@@ -1,0 +1,33 @@
+/*SASS VARIABLES AND MIXINS*/
+$default-family: 'Montserrat','Helvetica','Sans-serif';
+$font-color: #404040;
+$sec-font-color: #9F9F9F;
+$main-color: #b20000;
+$alt-red: #740024;
+$color-yellow: #EDA602;
+$alt-yellow: #BFA901;
+$font-color-dark: #142038;
+$screen-sm: 768px;
+$screen-md: 1270px;
+$screen-sp: 1100px;
+@mixin md{
+    @media (max-width: #{$screen-md}){
+        @content;
+    }
+}
+@mixin sm{
+    @media (max-width: #{$screen-sm}){
+        @content;
+    }
+}
+@mixin sp{
+    @media (max-width: #{$screen-sp}){
+        @content;
+    }
+}
+@mixin min-md {
+    @media (min-width: #{$screen-sm}) {
+        @content;
+    }
+}
+/*END SASS VARIABLES AND MIXINS*/
