@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-12 title">
           <h2 class="title__text">
-            <a href="#" @click="$router.go(-1)" class="title__link"><img src="../../public/static/images/arrow-left.svg" alt="Voltar" class="title__icon"></a>
+            <a href="#" @click="$router.go(-1)" class="title__link"><img src="/images/arrow-left.svg" alt="Voltar" class="title__icon"></a>
             <span class="title__title">Favoritos</span>
             <span class="title__number">({{ this.retImoveis.qtd_total_registros }})</span>
           </h2>

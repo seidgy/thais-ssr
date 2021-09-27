@@ -1,31 +1,31 @@
 /*FONTS*/
 @font-face {
     font-family: 'Montserrat';
-    src: url('../../../public/static/fonts/Montserrat-Regular.ttf');
+    src: url('/fonts/Montserrat-Regular.ttf');
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('../../../public/static/fonts/Montserrat-Thin.ttf');
+    src: url('/fonts/Montserrat-Thin.ttf');
     font-weight: 100;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('../../../public/static/fonts/Montserrat-SemiBold.ttf');
+    src: url('/fonts/Montserrat-SemiBold.ttf');
     font-weight: 600;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('../../../public/static/fonts/Montserrat-Medium.ttf');
+    src: url('/fonts/Montserrat-Medium.ttf');
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('../../../public/static/fonts/Montserrat-ExtraBold.ttf');
+    src: url('/fonts/Montserrat-ExtraBold.ttf');
     font-weight: 800;
 }
 /*END FONTS*/
@@ -206,7 +206,7 @@ div.row {
         height: 19px;
         width: 32px;
         margin-left: 15px;
-        background-image: url('../../../public/static/images/heart.svg');
+        background-image: url('/images/heart.svg');
         background-repeat: no-repeat;
         background-position: top left;
         background-size: auto 19px;
@@ -742,7 +742,7 @@ div.row {
 
 .ticket-info {
     padding: 20px;
-    background-image: url('../../../public/static/images/ticket-branco.svg');
+    background-image: url('/images/ticket-branco.svg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -799,14 +799,14 @@ div.row {
 
     .ticket__bottom-box {
         padding: 32px 55px 14px;
-        background-image: url('../../../public/static/images/ticket-vermelho.svg');
+        background-image: url('/images/ticket-vermelho.svg');
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
 
     .imovel--comercial {
         .ticket-info {
-            background-image: url('../../../public/static/images/ticket-branco-com.png');
+            background-image: url('/images/ticket-branco-com.png');
         }
 
             .ticket-info__title {
@@ -814,7 +814,7 @@ div.row {
             }
 
         .ticket__bottom-box {
-            background-image: url('../../../public/static/images/ticket-bordeaux.svg');
+            background-image: url('/images/ticket-bordeaux.svg');
         }
     }
 

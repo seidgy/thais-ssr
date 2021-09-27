@@ -23,34 +23,34 @@
     </div>
     <div class="imovel__data">
         <h3 class="imovel__title">
-            <router-link :to="{ name: 'imovel', params: {id: imovel.codigo_imovel}}" class="link-imovel"><b>{{imovel.imovel.endereco}}</b>, {{imovel.imovel.titulo_imovel}}</router-link>
+            <nuxt-link :to="{ name: 'imovel', params: {id: imovel.codigo_imovel}}" class="link-imovel"><b>{{imovel.imovel.endereco}}</b>, {{imovel.imovel.titulo_imovel}}</nuxt-link>
         </h3>
         <div class="imovel__bottom-content">
             <div class="numbers">
                 <div class="numbers__item">
-                    <img src="../../public/static/images/quartos.svg" alt="Quantidade de quartos" class="numbers__icon">
+                    <img src="/images/quartos.svg" alt="Quantidade de quartos" class="numbers__icon">
                     <p class="numbers__text">Quartos</p>
                     <p class="numbers__number">{{imovel.imovel.qtd_dormitorios?imovel.imovel.qtd_dormitorios:'-'}}</p>
                 </div>
                 <div class="numbers__item">
-                    <img src="../../public/static/images/vagas.svg" alt="Quantidade de quartos" class="numbers__icon">
+                    <img src="/images/vagas.svg" alt="Quantidade de quartos" class="numbers__icon">
                     <p class="numbers__text">Vagas</p>
                     <p class="numbers__number">{{imovel.imovel.qtd_vagas?imovel.imovel.qtd_vagas:'-'}}</p>
                 </div>
                 <div class="numbers__item">
-                    <img src="../../public/static/images/banheiros.svg" alt="Quantidade de quartos" class="numbers__icon">
+                    <img src="/images/banheiros.svg" alt="Quantidade de quartos" class="numbers__icon">
                     <p class="numbers__text">Banheiros</p>
                     <p class="numbers__number">{{imovel.imovel.qtd_banheiros?imovel.imovel.qtd_banheiros:'-'}}</p>
                 </div>
                 <div class="numbers__item">
-                    <img src="../../public/static/images/area.svg" alt="Quantidade de quartos" class="numbers__icon">
+                    <img src="/images/area.svg" alt="Quantidade de quartos" class="numbers__icon">
                     <p class="numbers__text">{{imovel.imovel.unidade_metrica}}</p>
                     <p class="numbers__number">{{imovel.imovel.area_total}}</p>
                 </div>
             </div>
             <div class="imovel__buttons">
                 <a href="#" @click.prevent="setCompare()" class="button button--secondary" :class="{'button--check':isCompare}">Compare</a>
-                <router-link :to="{ name: 'imovel', params: {id: imovel.codigo_imovel}}" class="button button--primary">DETALHES</router-link>
+                <nuxt-link :to="{ name: 'imovel', params: {id: imovel.codigo_imovel}}" class="button button--primary">DETALHES</nuxt-link>
             </div>
             <div class="imovel__buttons">
                 <a href="" @click.prevent="share"><span class="imovel__share" :id="'share-'+imovel.codigo_imovel">Compartilhe</span></a>
@@ -87,17 +87,11 @@
 
 <script>
 import $ from 'jquery'
-import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import {mapState} from 'vuex'
-import '@splidejs/splide/dist/css/themes/splide-default.min.css'
 import utils from '../utils/functions.js'
 export default {
     name: "cardImoveis",
     props: ['imovel', 'tipoVisualizacao'],
-    components: {
-        Splide, 
-        SplideSlide
-    },
     computed: {
         ...mapState(['favoritos','compare']),
         maisDe3imoveisNaListaCompare: function(){

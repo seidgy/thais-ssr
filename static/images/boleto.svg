@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.96" height="58.05" viewBox="0 0 48.96 58.05">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fe9798"/>
+      <stop offset="1" stop-color="#f94ba0"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1007" data-name="Grupo 1007" transform="translate(-175 -855.714)">
+    <g id="Grupo_1004" data-name="Grupo 1004" transform="translate(-502.884 1454.74)">
+      <g id="Grupo_1003" data-name="Grupo 1003" transform="translate(678.884 -547.816)">
+        <path id="Caminho_330" data-name="Caminho 330" d="M678.884-363.948a5.419,5.419,0,0,0,5.418,5.419h0a5.419,5.419,0,0,0,5.419-5.419v-.421h36.123a5.84,5.84,0,0,1-5.84,5.84H684.2" transform="translate(-678.884 364.369)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <path id="Caminho_331" data-name="Caminho 331" d="M720.283-547.886v-50.067l-.132-.073-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-2.285,1.259-2.285-1.259-.132.073v51.2" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <path id="Caminho_332" data-name="Caminho 332" d="M8.119-4.209l2.3-2.093c2.346-2.116,2.76-3.542,2.76-5.129,0-3.059-2.691-5.037-6.509-5.037C3.2-16.468.874-14.95-.3-12.742L3.8-10.695A2.634,2.634,0,0,1,6.164-12.19c1.035,0,1.564.483,1.564,1.265,0,.552-.161,1.173-1.265,2.208L.644-3.335V0h12.9V-4.209Zm9.823-11.264a6.658,6.658,0,0,0-3.3.832l.966,2a3.31,3.31,0,0,1,1.878-.577c.859,0,1.288.3,1.382.859H17.647c-2.281,0-3.354.792-3.354,2.214,0,1.261.926,2.281,2.723,2.281a2.069,2.069,0,0,0,2.079-1.1V-8h2.817v-3.944C21.913-14.386,20.464-15.473,17.942-15.473ZM17.928-9.69c-.456,0-.724-.255-.724-.59,0-.4.282-.617.926-.617h.751v.51A.96.96,0,0,1,17.928-9.69Z" transform="translate(182 882)" fill="url(#linear-gradient)"/>
+    <g id="Grupo_1005" data-name="Grupo 1005" transform="translate(2 52)">
+      <line id="Linha_43" data-name="Linha 43" x2="23.437" transform="translate(187.598 835.986)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_44" data-name="Linha 44" x2="23.437" transform="translate(187.598 839.703)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_45" data-name="Linha 45" x2="1.327" transform="translate(181.407 835.986)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_46" data-name="Linha 46" x2="1.327" transform="translate(181.407 839.703)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <g id="Grupo_1006" data-name="Grupo 1006" transform="translate(2 60)">
+      <line id="Linha_43-2" data-name="Linha 43" x2="23.437" transform="translate(187.598 835.986)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_44-2" data-name="Linha 44" x2="23.437" transform="translate(187.598 839.703)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_45-2" data-name="Linha 45" x2="1.327" transform="translate(181.407 835.986)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_46-2" data-name="Linha 46" x2="1.327" transform="translate(181.407 839.703)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

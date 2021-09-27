@@ -6,7 +6,7 @@
         <div class="compare__linha">
           <div class="compare__align-top compare__coluna compare__coluna--grow">
             <h2 class="title__text">
-              <a href="#" @click="$router.go(-1)" class="title__link"><img src="../../public/static/images/arrow-left.svg" alt="Voltar" class="title__icon"></a>
+              <a href="#" @click="$router.go(-1)" class="title__link"><img src="/images/arrow-left.svg" alt="Voltar" class="title__icon"></a>
               <span class="title__title">Comparativo</span>
             </h2>
           </div>
@@ -49,7 +49,7 @@
         <div class="compare__linha compare__buttons">
           <div class="compare__coluna compare__coluna--shrink">&nbsp;</div>
           <div class="compare__coluna" v-for="(imv, index) in comparativoPorCampos.cabecalho" :key="index">
-            <router-link class="button button--primary" :to="{ name: 'imovel', params: {id: imv.codigo_imovel}}">Detalhes</router-link>
+            <nuxt-link class="button button--primary" :to="{ name: 'imovel', params: {id: imv.codigo_imovel}}">Detalhes</nuxt-link>
           </div>
           <div class="compare__colun ">&nbsp;</div>
         </div>

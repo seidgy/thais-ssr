@@ -5,7 +5,7 @@
     </p>
     <div v-else>
       <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre '+dadosImovel.imovel.titulo_imovel+' Código: '+dadosImovel.codigo_imovel+' URL:'+url" class="whatsapp">
-        <img src="../../public/static/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
+        <img src="/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
         <span class="sr-only">Abre em uma nova aba</span>
       </a>
       <h1 class="sr-only">{{dadosImovel.imovel.titulo_imovel}}</h1>
@@ -29,7 +29,7 @@
                 <div class="ticket" :class="{'ticket--abas':dadosImovel.ofertas.length > 1}">
                   <div class="ticket-info" v-for="oferta in dadosImovel.ofertas" v-bind:key="oferta.tipo_oferta">
                     <h3 class="ticket-info__title-box" v-if="dadosImovel.imovel.finalidade == 'Residencial'">
-                      <img src="../../public/static/images/lar.svg" alt="Seu novo lar" aria-hidden="true" class="ticket-info__icon">
+                      <img src="/images/lar.svg" alt="Seu novo lar" aria-hidden="true" class="ticket-info__icon">
                       <span class="ticket-info__title">Seu novo lar</span>
                     </h3>
                     <h3 class="ticket-info__title-box" v-else>
@@ -88,22 +88,22 @@
             <div class="col-md-5 offset-md-2">
               <div class="numbers numbers--big">
                 <div class="numbers__item">
-                  <img src="../../public/static/images/quartos.svg" alt="Quantidade de quartos" class="numbers__icon">
+                  <img src="/images/quartos.svg" alt="Quantidade de quartos" class="numbers__icon">
                   <p class="numbers__text">Quartos</p>
                     <p class="numbers__number">{{dadosImovel.imovel.qtd_dormitorios?dadosImovel.imovel.qtd_dormitorios:'-'}}</p>
                 </div>
                 <div class="numbers__item">
-                  <img src="../../public/static/images/vagas.svg" alt="Quantidade de quartos" class="numbers__icon">
+                  <img src="/images/vagas.svg" alt="Quantidade de quartos" class="numbers__icon">
                   <p class="numbers__text">Vagas</p>
                     <p class="numbers__number">{{dadosImovel.imovel.qtd_vagas?dadosImovel.imovel.qtd_vagas:'-'}}</p>
                 </div>
                 <div class="numbers__item">
-                  <img src="../../public/static/images/banheiros.svg" alt="Quantidade de quartos" class="numbers__icon">
+                  <img src="/images/banheiros.svg" alt="Quantidade de quartos" class="numbers__icon">
                   <p class="numbers__text">Banheiros</p>
                     <p class="numbers__number">{{dadosImovel.imovel.qtd_banheiros?dadosImovel.imovel.qtd_banheiros:'-'}}</p>
                 </div>
                 <div class="numbers__item">
-                  <img src="../../public/static/images/area.svg" alt="Quantidade de quartos" class="numbers__icon">
+                  <img src="/images/area.svg" alt="Quantidade de quartos" class="numbers__icon">
                   <p class="numbers__text">{{dadosImovel.imovel.unidade_metrica}}</p>
                   <p class="numbers__number">{{dadosImovel.imovel.area_total}}</p>
                 </div>
@@ -131,7 +131,7 @@
           <div class="row">
             <div class="col-md-6 offset-md-1 imovel__default-subtitle-box">
               <p class="imovel__default-text" :class="{ 'short-text': !verTexto }" style="white-space: pre-line">{{dadosImovel.imovel.observacao}}</p>
-              <button class="button-mostrar-mais" @click="verTexto = !verTexto" v-if="!verTexto">Mostrar texto completo <img src="../../public/static/images/arrow-up.svg" aria-hidden="true" class="button-mostrar-mais__icon"> </button>
+              <button class="button-mostrar-mais" @click="verTexto = !verTexto" v-if="!verTexto">Mostrar texto completo <img src="/images/arrow-up.svg" aria-hidden="true" class="button-mostrar-mais__icon"> </button>
             </div>
           </div>
           <!--<div class="row"><div class="col-md-12"><div class="separator"></div></div></div>
@@ -169,7 +169,7 @@
           </div>
           <div class="col-md-7 not-mobile">
             <h4 class="bairro__title">{{ bairro.cidade_bairro }}</h4>
-            <router-link :to="'/imoveis?tipo='+(dadosImovel.ofertas[0].tipo_oferta==2?'compra':'aluguel')+'&bairroImovel='+bairro.ra" class="bairro__link">Ver todos imóveis desta região</router-link>
+            <nuxt-link :to="'/imoveis?tipo='+(dadosImovel.ofertas[0].tipo_oferta==2?'compra':'aluguel')+'&bairroImovel='+bairro.ra" class="bairro__link">Ver todos imóveis desta região</nuxt-link>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@
             <div class="offset-md-5 col-md-7">
               <!--<p class="bairro__subtitle">Às margens do Lago Paranoá, sendo assim uma das regiões mais valorizadas de Brasília</p>-->
               <p class="bairro__text" v-html="bairro.descricao"></p>
-              <router-link :to="'/imoveis?tipo='+(dadosImovel.ofertas[0].tipo_oferta==2?'compra':'aluguel')+'&bairroImovel='+bairro.ra" class="bairro__link mobile-only">Ver todos imóveis desta região</router-link>
+              <nuxt-link :to="'/imoveis?tipo='+(dadosImovel.ofertas[0].tipo_oferta==2?'compra':'aluguel')+'&bairroImovel='+bairro.ra" class="bairro__link mobile-only">Ver todos imóveis desta região</nuxt-link>
             </div>
           </div>
         </div>

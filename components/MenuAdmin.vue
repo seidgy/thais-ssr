@@ -1,7 +1,7 @@
 <template>
     <ul class="menu-admin">
         <li class="menu-admin__item" v-for='item in menu' :key='item.name'>
-            <router-link :to="{ name: item.name}" class="menu-admin__link" v-bind:class="{ active: currentRouteName == item.name }">{{ item.text }}</router-link>
+            <nuxt-link :to="{ name: item.name}" class="menu-admin__link" v-bind:class="{ active: currentRouteName == item.name }">{{ item.text }}</nuxt-link>
         </li>
     </ul>
 </template>

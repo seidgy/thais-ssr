@@ -43,7 +43,7 @@
       <p class="cta-business__text">Para o seu negócio</p> 
     </button>
     <section class="business" id="business">
-      <img src="../../public/static/images/marmore.png" alt="Fundo mármore" class="business__marble">
+      <img src="/images/marmore.png" alt="Fundo mármore" class="business__marble">
       <h2 class="business__title">
         <span>A porta</span>
         <span>de entrada</span>
@@ -55,7 +55,7 @@
           <span></span>
           <h3>Vamos ajudar você a encontrar o lugar ideal para sua ideia</h3>
         </div>
-        <img src="../../public/static/images/thais-negocios.svg" alt="Fundo Thaís Negócios" class="business-thais__image">
+        <img src="/images/thais-negocios.svg" alt="Fundo Thaís Negócios" class="business-thais__image">
       </div>
       <div class="business__options">
         <!--<a href="#" class="business-button">
@@ -69,45 +69,45 @@
       </div>
     </section>
     <section class="about">
-      <img src="../../public/static/images/experiencia.svg" alt="É mais fácil contar com a experiência" class="about__image">
+      <img src="/images/experiencia.svg" alt="É mais fácil contar com a experiência" class="about__image">
       <div v-if="this.$parent.windowWidth > 768" class="doubts__list">
         <div class="doubt-box">
-          <img src="../../public/static/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
+          <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
         </div>
         
         <div class="doubt-box">
-          <img src="../../public/static/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
+          <img src="/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
           <p class="doubt-box__text">A união entre experiência e modernidade</p>
         </div>
         
         <div class="doubt-box">
-          <img src="../../public/static/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
+          <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
           <p class="doubt-box__text">Respeito pelo o que você procura</p>
         </div>
         
         <div class="doubt-box">
-          <img src="../../public/static/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
+          <img src="/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
           <p class="doubt-box__text">Uma equipe que oferece o seu melhor</p>
         </div>
       </div>
       <div v-else class="mobile-about">
-          <img src="../../public/static/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
+          <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
           <carousel-3d :width="200" :height="200" :autoplay="true" :autoplayTimeout="5000">
             <slide :index="0">
               <div class="doubt-box">
-                <img src="../../public/static/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
+                <img src="/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
                 <p class="doubt-box__text">A união entre experiência e modernidade</p>
               </div>
             </slide>
             <slide :index="1">
               <div class="doubt-box">
-                <img src="../../public/static/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
+                <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
                 <p class="doubt-box__text">Respeito pelo o que você procura</p>
               </div>
             </slide>
             <slide :index="2">
               <div class="doubt-box">
-                <img src="../../public/static/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
+                <img src="/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
                 <p class="doubt-box__text">Uma equipe que oferece o seu melhor</p>
               </div>
             </slide>
@@ -115,7 +115,7 @@
       </div>
     </section>
     <div style="display:none">
-      <img src="../../public/static/images/novo-site.svg" alt="">
+      <img src="/images/novo-site.svg" alt="">
     </div>
   </div>
 </template>
@@ -455,7 +455,7 @@ export default {
     z-index: 1;
     height: 95vh;
     width: 100%;
-    background-image: url('../../public/static/images/header-home.png');
+    background-image: url('/images/header-home.png');
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: center;
@@ -614,7 +614,8 @@ export default {
     background-color: #FFF;
     border: none;
     padding: 10px 6px;
-    width: min(730px, 90%);
+    width: 90%;
+    max-width: 730px;
     height: 44px;
     margin: 0 auto;
     border-radius: 22px;
@@ -939,7 +940,7 @@ export default {
   .business {
     display: flex;
     flex-direction: column;
-    background-image: url('../../public/static/images/pattern.svg');
+    background-image: url('/images/pattern.svg');
     background-size: 35% auto;
     background-repeat: repeat-y;
     position: relative;

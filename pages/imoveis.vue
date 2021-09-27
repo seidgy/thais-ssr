@@ -1,8 +1,8 @@
 <template>
   <div class="main row d-flex justify-content-center">
     <h1 class="sr-only">Encontre seu imóvel</h1>
-    <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre Imóveis '+(tipo=='aluguel'?'para alugar':'`à venda')+' URL:'+url" class="whatsapp">
-      <img src="../../public/static/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
+    <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre Imóveis '+(tipo=='aluguel'?'para alugar':'`à venda')+' URL:'+this.$route.fullPath" class="whatsapp">
+      <img src="/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
       <span class="sr-only">Abre em uma nova aba</span>
     </a>
     <div class="container container--imoveis">
@@ -43,9 +43,12 @@
             </div>
           </div>
         </div>
-        <div class="row" id="filtros-container" :class="{'show-filters':showFilters}">
+        <div v-if="retImoveis.imoveis.length <= 0">
+            <h4>Infelizmente não encontramos nenhum imóvel a partir dos filtros informados.</h4>
+        </div>
+        <div class="row" id="filtros-container" :class="{'show-filters':showFilters}" v-else>
           <div class="toggle-filtros mobile-only">
-            <button class="button button--secondary button--comercial" @click="showFilters=!showFilters">
+            <button class="button button--secondary" @click="showFilters=!showFilters">
               <img src="/static/images/filter-red.svg" alt="Ícone de filtro" aria-hidden="true" class="button__icon">
               Filtros
             </button>
@@ -53,8 +56,8 @@
           </div>
           <div class="col-md-3 filtro-imoveis">
             <form action="" id="form-filtros" class="form-filtros">
-              <input type="hidden" name="finalidadeImovel" v-model="finalidadeImovel">
               <!--<input type="hidden" name="textoBusca" v-model="textoBusca">-->
+              <input type="hidden" name="finalidadeImovel" v-model="finalidadeImovel">
               <div class="search-form__options">
                 <div class="search-form__option" >
                   <input type="radio" id="alugar" name="tipo" v-model="tipo" checked value="aluguel" class="search-form__radio">
@@ -206,16 +209,13 @@
           <div class="col-sm-12 mobile-only">
             <h2 class="imoveis__title">{{ totalRegistrosEncontrados }} imóveis encontrados</h2>
           </div>
-          <div class="col-md-9 lista-imoveis" v-if="retImoveis.imoveis.length <= 0">
-            <h4>Infelizmente não encontramos nenhum imóvel a partir dos filtros informados.</h4>
-          </div>
-          <div class="col-md-9 lista-imoveis lista-imoveis--short"  :class="'lista-imoveis--'+tipoVisualizacao" v-else>
-            <div v-for="imv in retImoveis.imoveis" v-bind:key="imv.imovel.codigo_imovel" class="lista-imoveis__imovel imovel imovel--comercial" :class="'imovel--'+tipoVisualizacao">
+          <div class="col-md-9 lista-imoveis lista-imoveis--short" :class="'lista-imoveis--'+tipoVisualizacao">
+            <div v-for="imv in retImoveis.imoveis" v-bind:key="imv.imovel.codigo_imovel" class="lista-imoveis__imovel imovel" :class="'imovel--'+tipoVisualizacao">
               <cardImoveis :imovel="imv" :tipoVisualizacao="tipoVisualizacao" />
             </div>
           </div>
 
-          <div class="col-md-12 paginacao-comercial">
+          <div class="col-md-12">
             <Paginacao v-if="!carregando" :pagina="paramsPagina.page" :totalDeRegistros="retImoveis.qtd_total_registros" :itensPorPagina="paramsPagina.limit" :clickHandler='clickPagina'/>
           </div>
           
@@ -223,7 +223,7 @@
       </div>
 
 
-      <loading message="Aguarde, estamos separando os melhores imóveis"  v-else />
+      <loading message="Aguarde, estamos separando os melhores imóveis" v-else />
 
     </div>
   </div>
@@ -236,25 +236,7 @@ import cardImoveis from '../components/cardImoveis'
 import simplebar from 'simplebar-vue';
 import 'simplebar/dist/simplebar.min.css';
 export default {
-  name: 'ImoveisCom',
-  metaInfo() {
-      return { 
-          title: "Thaís Imobiliária imovéis para venda e locação",
-          meta: [
-              { name: 'description', content:  'Thaís Imobiliária imovéis para venda e locação'},
-              { name: 'keywords', content: 'vendadeimoveis,locaçãodeimoveis,guara,asasul,asanorte,aguasclaras,sudoeste,noroeste,brasilia,apartamento,casa,imobiliariabrasilia'},
-              { property: 'og:title', content: "Thaís Imobiliária"},
-              { property: 'og:description', content: "Thaís Imobiliária imovéis para venda e locação"},
-              { property: 'og:site_name', content: 'Thaís Imobiliária'},
-              {property: 'og:url', content: 'https://novo.thaisimobiliaria.com.br'},   
-              {property: 'og:type', content: 'website'},   
-              {property: 'og:image:width', content: '550'},
-              {property: 'og:image:height', content: '309'}, 
-              {property: 'og:image:height', content: 'https://managing-images.kenlo.io/unsafe/600x400/filters:quality(100)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1s0xgxSbBGOsBT9+RO1zjks-ynciLnlXpdKzsuCVZKPvMZhGt-GI0v+QFtypVh7xY3icsFUfjv4HHembm5wv7fiGO536-3h5Ts7uLDcYCHkIkx36P+GAOhv-Q1TYF+Yx0oNrkjGhayU4mMNSFcqnywpkzMApYcDjsIkihq3TwLiXGSRtX2r1N9gXmfBv-V53TUCe28WXh7OsFfAttJ8h8PpwKpSRFyvwoXqw==.png'}, 
-              {name: 'robots', content: 'index,follow'} 
-          ]
-      }
-  },
+  name: 'imoveis',
   watch: {
       $route: {
           immediate: true,  
@@ -287,7 +269,6 @@ export default {
   },
   data() {
     return {
-      url: window.location.href,
       carregando: true,
       showMap: false,
       termoBusca:null,
@@ -324,8 +305,8 @@ export default {
   },
   methods: {
     async getImoveis(){
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
+      //await this.$recaptchaLoaded()
+      const token = await this.$recaptcha.execute('login')
       if(this.textoBusca || this.textoBusca==='') {
         this.paramsPagina.textoBusca = this.textoBusca ? this.textoBusca: '';
       }
@@ -343,6 +324,7 @@ export default {
       if(this.paramsPagina.textoBusca || this.paramsPagina.textoBusca==='') {
         this.$imoveis.buscar(token,this.paramsPagina).then(ret => {
           const primeiraConsulta = ret.data;
+          console.log(primeiraConsulta)
           if(primeiraConsulta.listaBairros && primeiraConsulta.listaBairros.length <= 6) {
             paramsConsulta.bairro = [];
             primeiraConsulta.listaBairros.forEach(element => {
@@ -364,7 +346,7 @@ export default {
           if(primeiraConsulta.minimoQuartos >= 1) paramsConsulta.minimoQuartos = primeiraConsulta.minimoQuartos;
           if(primeiraConsulta.minimoBanheiros >= 1) paramsConsulta.minimoBanheiros = primeiraConsulta.minimoBanheiros;
           if(primeiraConsulta.minimoVagas >= 1) paramsConsulta.minimoVagas = primeiraConsulta.minimoVagas;
-          paramsConsulta.finalidade = primeiraConsulta.finalidade
+          paramsConsulta.finalidade = this.finalidadeImovel?this.finalidadeImovel:null
           this.getImoveisFiltro(paramsConsulta);
         }).catch(err=>{
           console.log('ERRO -> ',err)
@@ -386,8 +368,8 @@ export default {
       }
     }, 
     async getImoveisFiltro(params) {
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
+      //await this.$recaptchaLoaded()
+      const token = await this.$recaptcha.execute('login')
       this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
         this.retImoveis= ret.data;
         if((this.retImoveis.listTipoImovel && this.retImoveis.listTipoImovel.length == 1) || params.tipo_imovel) {
@@ -509,6 +491,7 @@ export default {
     if(window.innerWidth < 1270) {
       this.tipoVisualizacao = 'tabela';
     }
+    console.log(this.$route)
   },
 }
 </script>
@@ -612,6 +595,7 @@ export default {
     .filtro-imoveis__group {
       width: 100%;
       min-height: 44px;
+      border-radius: 22px;
       border: 1px solid #CCC;
       padding: 12px 17px;
       margin-bottom: 30px;
@@ -631,7 +615,7 @@ export default {
         font-weight: 600;
       }
       &::after {
-        content: url('../../public/static/images/arrow-up.svg');
+        content: url('/images/arrow-up.svg');
         transform: rotateX(0);
         display: block;
         transition: all 0.2s ease-out;
@@ -670,15 +654,16 @@ export default {
     .filtro-list__number {
       font-size: 0.875rem;
       font-weight: 500;
-      color: #740024;
+      color: $main-color;
     }
 
     .filtro-list__clean {
       font-size: .875rem;
-      color: #740024;
+      color: $main-color;
       margin-bottom: 15px;
       display: block;
     }
+
     .filtro-list__item {
       width: 90%;
     }

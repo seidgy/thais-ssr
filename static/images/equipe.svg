@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="77.753" height="68.228" viewBox="0 0 77.753 68.228">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.6" y1="0.038" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffa10d"/>
+      <stop offset="1" stop-color="#ee4816"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1053" data-name="Grupo 1053" transform="translate(-1075.14 -2498.687)">
+    <g id="Grupo_1051" data-name="Grupo 1051" transform="translate(0 -11.828)">
+      <path id="Caminho_351" data-name="Caminho 351" d="M-128.057,178.02l-4.9-11.444,7.75-3.31-.837-1.955L-144.2,169.06l6.637,5.13-.9,8.27Z" transform="translate(1219.337 2349.907)" fill="url(#linear-gradient)"/>
+      <rect id="Retângulo_378" data-name="Retângulo 378" width="15.79" height="14.577" transform="translate(1089.026 2518.03) rotate(-23.125)" fill="url(#linear-gradient)"/>
+    </g>
+    <g id="Grupo_1052" data-name="Grupo 1052" transform="translate(0 -7.391)">
+      <circle id="Elipse_47" data-name="Elipse 47" cx="5.103" cy="5.103" r="5.103" transform="translate(1101.421 2538.008)" stroke-width="2" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0,0,0,0)"/>
+      <circle id="Elipse_48" data-name="Elipse 48" cx="5.103" cy="5.103" r="5.103" transform="translate(1086.841 2543.84)" stroke-width="2" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0,0,0,0)"/>
+      <path id="Caminho_348" data-name="Caminho 348" d="M-129.857,212.329l3.407-15.9c.564-2.633,2.425-3.966,5.341-4.512a27.147,27.147,0,0,0,8.942-2.784c4.355-2.322,6.694-5.568,8.606-4.471s1.067,3.145-.437,5.887a19.967,19.967,0,0,1-6.228,6.175c.17-.1.072-.041-.027.016a29.192,29.192,0,0,1-9.561,2.923" transform="translate(1226.904 2360.671)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_48" data-name="Linha 48" y1="14.109" x2="3.331" transform="translate(1110.169 2558.891)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <circle id="Elipse_49" data-name="Elipse 49" cx="5.103" cy="5.103" r="5.103" transform="translate(1134.281 2542.382)" stroke-width="2" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0,0,0,0)"/>
+      <path id="Caminho_349" data-name="Caminho 349" d="M-83.74,208.038l-3.267-11.365c-.563-2.632-2.2-4.673-6.816-4.673h-17.5s.971,5.832,5.832,5.832h11.664" transform="translate(1235.394 2364.962)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_49" data-name="Linha 49" x1="3.706" y1="10.206" transform="translate(1137.197 2562.794)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Caminho_350" data-name="Caminho 350" d="M-138,208.038l2.158-10.069c.564-2.632,2.425-3.964,5.341-4.511l7.29-1.458" transform="translate(1223.175 2364.962)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_50" data-name="Linha 50" x1="16.159" y1="37.663" transform="translate(1105.121 2507.391)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_51" data-name="Linha 51" x1="2.663" y1="6.447" transform="translate(1123.531 2550.505)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Linha_52" data-name="Linha 52" x1="4.212" y1="10.198" transform="translate(1128.611 2562.802)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
