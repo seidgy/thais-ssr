@@ -64,13 +64,12 @@ export default {
   recaptcha: {
     siteKey: process.env.VUE_APP_TOKEN_RECAPTCHA, 
     hideBadge: true, 
-    size: 'invisible',
-    version: 3
+    version: 2
   },
 
   env: {
     VUE_APP_SERVER_URI: process.env.VUE_APP_SERVER_URI || 'https://backend.thaisimobiliaria.com.br',
-    VUE_APP_TOKEN_RECAPTCHA: process.env.VUE_APP_TOKEN_RECAPTCHA || '6Ld3QNQUAAAAAMU0ZN09cEO5whGn4k60eUeb-wXY',
+    VUE_APP_TOKEN_RECAPTCHA: process.env.VUE_APP_TOKEN_RECAPTCHA || '6Ld3QNQUAAAAAFJvI57_IMje6VTyNCppsmMNzYAH',
     VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL || 'https://novo.thaisimobiliaria.com.br'
   }
 }
