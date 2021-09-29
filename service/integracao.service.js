@@ -1,12 +1,13 @@
-const axios = require('axios')
-module.exports = {
+import axios from 'axios'
+
+export class IntegracaoService {
     getAgendamentos(token) {
       return axios.get(process.env.VUE_APP_SERVER_URI+'/admin/integracao/getAgendamentos', {
           headers:{
               authorization: token
           }
       })
-    },
+    }
 
     saveAgendamento(token,ag) {
         return axios.post(process.env.VUE_APP_SERVER_URI+'/admin/integracao/saveAgendamento', {
@@ -15,7 +16,7 @@ module.exports = {
                 authorization: token
             }
         })
-    },
+    }
 
     validaTokenAdmin(token,token_admin){
         return axios.post(process.env.VUE_APP_SERVER_URI+'/admin/login/validaToken', {

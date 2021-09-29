@@ -35,7 +35,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~plugins/vue-carousel-3d', ssr: false },
-    {src: '~/plugins/splide.client.js', ssr:false}
+    {src: '~/plugins/splide.client.js', ssr:false},
+    {src: '~/plugins/recaptcha.js', ssr:false},
+    {src: '~/plugins/services.plugin.js', ssr:false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,7 +50,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "vue-toastification/nuxt",
-    "@nuxtjs/recaptcha",
+    //"@nuxtjs/recaptcha",
     ['@netsells/nuxt-hotjar', { 
         id: '2045955', 
         sv: '6',
@@ -61,15 +63,15 @@ export default {
   build: {
   },
 
-  recaptcha: {
+  /*recaptcha: {
     siteKey: process.env.VUE_APP_TOKEN_RECAPTCHA, 
     hideBadge: true, 
     version: 2
-  },
+  },*/
 
   env: {
     VUE_APP_SERVER_URI: process.env.VUE_APP_SERVER_URI || 'https://backend.thaisimobiliaria.com.br',
-    VUE_APP_TOKEN_RECAPTCHA: process.env.VUE_APP_TOKEN_RECAPTCHA || '6Ld3QNQUAAAAAFJvI57_IMje6VTyNCppsmMNzYAH',
+    VUE_APP_TOKEN_RECAPTCHA: process.env.VUE_APP_TOKEN_RECAPTCHA || '6Ld3QNQUAAAAAMU0ZN09cEO5whGn4k60eUeb-wXY',
     VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL || 'https://novo.thaisimobiliaria.com.br'
   }
 }

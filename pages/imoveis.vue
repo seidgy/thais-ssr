@@ -306,8 +306,8 @@ export default {
   methods: {
     async getImoveis(){
       if (process.client) {
-        //await this.$recaptchaLoaded()
-        const token = await this.$recaptcha.execute('login')
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
         if(this.textoBusca || this.textoBusca==='') {
           this.paramsPagina.textoBusca = this.textoBusca ? this.textoBusca: '';
         }
@@ -371,8 +371,8 @@ export default {
     }, 
     async getImoveisFiltro(params) {
       if (process.client) {
-        //await this.$recaptchaLoaded()
-        const token = await this.$recaptcha.execute('login')
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
         this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
           this.retImoveis= ret.data;
           if((this.retImoveis.listTipoImovel && this.retImoveis.listTipoImovel.length == 1) || params.tipo_imovel) {
@@ -492,19 +492,19 @@ export default {
     }
   },
   async mounted() {
-    try {
+    /*try {
       await this.$recaptcha.init()
     } catch (e) {
       console.error(e);
-    }
+    }*/
     if(window.innerWidth < 1270) {
       this.tipoVisualizacao = 'tabela';
     }
     console.log(this.$route)
   },
-  beforeDestroy() {
+  /*beforeDestroy() {
     this.$recaptcha.destroy()
-  }
+  }*/
 }
 </script>
 <style lang="scss" scoped>
