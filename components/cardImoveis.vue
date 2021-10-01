@@ -23,7 +23,7 @@
     </div>
     <div class="imovel__data">
         <h3 class="imovel__title">
-            <nuxt-link :to="{ name: 'imovel', params: {id: imovel.codigo_imovel}}" class="link-imovel"><b>{{imovel.imovel.endereco}}</b>, {{imovel.imovel.titulo_imovel}}</nuxt-link>
+            <nuxt-link :to="'/imovel/'+imovel.codigo_imovel" class="link-imovel"><b>{{imovel.imovel.endereco}}</b>, {{imovel.imovel.titulo_imovel}}</nuxt-link>
         </h3>
         <div class="imovel__bottom-content">
             <div class="numbers">

@@ -29,7 +29,12 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/main.scss'
+    '@/assets/css/main.scss',
+    '@/assets/css/bootstrap.min.css'
+  ],
+
+  js: [
+    '@/assets/js/bootstrap.min.js'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -37,7 +42,7 @@ export default {
     { src: '~plugins/vue-carousel-3d', ssr: false },
     {src: '~/plugins/splide.client.js', ssr:false},
     {src: '~/plugins/recaptcha.js', ssr:false},
-    {src: '~/plugins/services.plugin.js', ssr:false}
+    {src: '~/plugins/services.plugin.js', ssr:false},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

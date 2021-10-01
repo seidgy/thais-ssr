@@ -62,7 +62,7 @@
           <span class="business-button__text">Ainda não sei o que preciso</span>
           <span class="business-button__arrow"></span>
         </a>-->
-        <a href="#" class="business-button" v-on:click.prevent="$router.push({ name: 'comerciais', query: { tipo: 'aluguel', finalidadeImovel: 'Comercial' } })">
+        <a href="#" class="business-button" v-on:click.prevent="$router.push({ path: '/imoveis-comerciais', query: { tipo: 'aluguel', finalidadeImovel: 'Comercial' } })">
           <span class="business-button__text">Encontre o imóvel para seu negócio</span>
           <span class="business-button__arrow"></span>
         </a>
