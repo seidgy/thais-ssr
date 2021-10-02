@@ -109,19 +109,21 @@ export default {
   },
   methods: {
     async getImoveis(){
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      
-      // AQUI BASTA OBTER OS "codigo_imovel" SALVOS NO FAVORITOS E PASSAR COMO OBJETO DE codigo_imovel EX: codigo_imovel: ['AP9972','CA3197']
-      this.paramsPagina.termoBusca = {codigo_imovel: this.compare}
-      
-      this.carregando = true
-      this.$imoveis.buscaParametrizada(token,this.paramsPagina).then(ret => {
-        this.retImoveis= ret.data.imoveis
-        this.montarComparativo()
-      }).catch(err=>{
-        console.log('ERRO -> ',err)
-      }).finally(() => this.carregando = false)
+      if (process.client) {
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        
+        // AQUI BASTA OBTER OS "codigo_imovel" SALVOS NO FAVORITOS E PASSAR COMO OBJETO DE codigo_imovel EX: codigo_imovel: ['AP9972','CA3197']
+        this.paramsPagina.termoBusca = {codigo_imovel: this.compare}
+        
+        this.carregando = true
+        this.$imoveis.buscaParametrizada(token,this.paramsPagina).then(ret => {
+          this.retImoveis= ret.data.imoveis
+          this.montarComparativo()
+        }).catch(err=>{
+          console.log('ERRO -> ',err)
+        }).finally(() => this.carregando = false)
+      }
     },
     setCompare(codigo){
       this.$store.commit('toggleCompare', codigo);
@@ -232,9 +234,6 @@ export default {
         return '';
       }
     }
-  },
-  mounted(){
-    //this.getImoveis()
   }
 }
 </script>
@@ -369,11 +368,11 @@ export default {
     }
 
     .compare__small-button--white:before{
-      content: url('/static/images/close-black.svg');
+      content: url('/images/close-black.svg');
     }
 
     .compare__small-button--red:before{
-      content: url('/static/images/plus-white.svg');
+      content: url('/images/plus-white.svg');
     }
 
   .compare__foto {
@@ -395,7 +394,7 @@ export default {
     }
 
     .compare__foto--fallback:before {
-      content:url('/static/images/casa-fallback.svg');
+      content:url('/images/casa-fallback.svg');
       position: absolute;
       top: 55%;
       left: 50%;
@@ -422,7 +421,7 @@ export default {
         font-weight: 700;
       }
       &:before {
-        content: url('/static/images/radio-off.svg');
+        content: url('/images/radio-off.svg');
         margin-right: 9px;
         @include sm {
           margin: 0 0 5px 0;
@@ -444,7 +443,7 @@ export default {
     .compare__atributo--best {
       color: #35A20C;
       &:before {
-        content: url('/static/images/radio-on.svg');
+        content: url('/images/radio-on.svg');
       }
       span{
         color:#35A20C;

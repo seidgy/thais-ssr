@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   server: {
@@ -30,19 +32,16 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.scss',
-    '@/assets/css/bootstrap.min.css'
-  ],
-
-  js: [
-    '@/assets/js/bootstrap.min.js'
+    '~/node_modules/bootstrap/dist/css/bootstrap.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~plugins/vue-carousel-3d', ssr: false },
-    {src: '~/plugins/splide.client.js', ssr:false},
-    {src: '~/plugins/recaptcha.js', ssr:false},
-    {src: '~/plugins/services.plugin.js', ssr:false},
+    { src: '~/plugins/splide.client.js', ssr: false },
+    { src: '~/plugins/recaptcha.js', ssr: false },
+    { src: '~/plugins/services.plugin.js', ssr: false },
+    { src: '~/plugins/bootstrap.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -66,6 +65,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    vendor: ["jquery", "bootstrap"],
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: "jquery"
+      })
+    ],
   },
 
   /*recaptcha: {

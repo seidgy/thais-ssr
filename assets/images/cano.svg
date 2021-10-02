@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50.905" height="60.353" viewBox="0 0 50.905 60.353">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#61e7e6"/>
+      <stop offset="0.998" stop-color="#846beb"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1014" data-name="Grupo 1014" transform="translate(-460 -859)">
+    <g id="Grupo_1010" data-name="Grupo 1010" transform="translate(0 8.014)">
+      <path id="Caminho_319" data-name="Caminho 319" d="M1243.328,172.239a8.8,8.8,0,0,1,4.09-7.783,9.378,9.378,0,0,0,4.09-7.9v-2.045s8.18,6.817,8.18,17.725a8.18,8.18,0,0,1-16.361,0Z" transform="translate(-748.784 716.967)" fill="url(#linear-gradient)"/>
+      <g id="Grupo_1002" data-name="Grupo 1002">
+        <g id="Grupo_988" data-name="Grupo 988">
+          <path id="Caminho_211" data-name="Caminho 211" d="M1175.451,178.734c10.629,0,18.371-7.741,18.371-17.291v-5.4" transform="translate(-714.451 731.606)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <path id="Caminho_212" data-name="Caminho 212" d="M1187.806,165.766a4.322,4.322,0,0,0,4.323-4.323v-5.4" transform="translate(-725.726 731.606)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <g id="Grupo_788" data-name="Grupo 788" transform="translate(463.161 851.986)">
+            <rect id="Retângulo_321" data-name="Retângulo 321" width="19.451" height="8.645" rx="1" transform="translate(0 27.016)" stroke-width="2" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path id="Caminho_213" data-name="Caminho 213" d="M1198.973,152.756v-5.4a17.29,17.29,0,0,1,17.29-17.29h0l7.565-2.162" transform="translate(-1195.731 -125.74)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path id="Caminho_214" data-name="Caminho 214" d="M1220.264,162.466v-5.4a4.322,4.322,0,0,1,4.322-4.323h0l7.565,2.162" transform="translate(-1204.054 -135.45)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path id="Caminho_215" data-name="Caminho 215" d="M1241.942,145.966h0a2.161,2.161,0,0,1-2.161-2.161V126.514a2.161,2.161,0,0,1,2.161-2.161h6.484V143.8" transform="translate(-1211.683 -124.353)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <line id="Linha_30" data-name="Linha 30" y2="5.403" transform="translate(20.532 4.323)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

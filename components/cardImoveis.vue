@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import {mapState} from 'vuex'
 import utils from '../utils/functions.js'
 export default {

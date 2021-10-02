@@ -4,6 +4,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  checkState: (state) => {
+    state.favoritos = localStorage.getItem('favoritos')?JSON.parse(localStorage.getItem('favoritos')):[];
+    state.compare = localStorage.getItem('compare')?JSON.parse(localStorage.getItem('compare')):[]
+  },
   toggleFav: (state,codigo_imovel) => {
     if(state.favoritos.find(aux => aux==codigo_imovel)){
       state.favoritos.splice(state.favoritos.indexOf(codigo_imovel),1);

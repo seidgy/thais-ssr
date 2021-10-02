@@ -26,6 +26,7 @@ export default {
     }
   },
   mounted(){
+    this.$store.commit('checkState');
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
       this.onResize()

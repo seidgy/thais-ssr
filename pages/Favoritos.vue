@@ -94,18 +94,20 @@ export default {
   },
   methods: {
     async getImoveisFavoritos(){
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      this.paramsPagina.termoBusca = {codigo_imovel: this.favoritos}
-      this.carregando = true
-      this.$imoveis.buscaParametrizada(token,this.paramsPagina).then(ret => {
-        this.retImoveis = ret.data
-        this.totalRegistrosEncontrados = ret.qtd_total_registros
-        this.getImoveisBairro(this.retImoveis.imoveis);
-    
-      }).catch(err=>{
-        console.log('ERRO -> ',err)
-      }).finally(() => this.carregando = false)
+      if (process.client) {
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        this.paramsPagina.termoBusca = {codigo_imovel: this.favoritos}
+        this.carregando = true
+        this.$imoveis.buscaParametrizada(token,this.paramsPagina).then(ret => {
+          this.retImoveis = ret.data
+          this.totalRegistrosEncontrados = ret.qtd_total_registros
+          this.getImoveisBairro(this.retImoveis.imoveis);
+      
+        }).catch(err=>{
+          console.log('ERRO -> ',err)
+        }).finally(() => this.carregando = false)
+      }
     }, 
     clickPagina(page){
       this.paramsPagina.page = page

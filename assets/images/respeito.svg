@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="67.145" height="66.09" viewBox="0 0 67.145 66.09">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fe9798"/>
+      <stop offset="1" stop-color="#f94ba0"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1047" data-name="Grupo 1047" transform="matrix(0.966, 0.259, -0.259, 0.966, -112.405, -2589.988)">
+    <g id="Grupo_1046" data-name="Grupo 1046" transform="translate(792.183 2464.988)">
+      <line id="Linha_47" data-name="Linha 47" x2="10.239" transform="translate(31.581 14.061)" fill="none" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Caminho_337" data-name="Caminho 337" d="M-742.394,340.536h7.867a.436.436,0,0,1,.436.436V382.1a.436.436,0,0,1-.436.436h-28.312a.436.436,0,0,1-.436-.436V355.133" transform="translate(790.783 -326.475)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Caminho_338" data-name="Caminho 338" d="M-963.383,251.462a12.655,12.655,0,0,1,6.789,11.217,12.657,12.657,0,0,1-12.657,12.657,12.657,12.657,0,0,1-12.656-12.657,12.657,12.657,0,0,1,12.081-12.644" transform="translate(988.564 -244.543)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <circle id="Elipse_43" data-name="Elipse 43" cx="4.023" cy="4.023" r="4.023" transform="translate(15.961 12.268)" stroke-width="2" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0,0,0,0)"/>
+      <circle id="Elipse_44" data-name="Elipse 44" cx="3.634" cy="3.634" r="3.634" transform="translate(38.466 19.092)" stroke-width="2" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0,0,0,0)"/>
+      <path id="Caminho_339" data-name="Caminho 339" d="M-840.572,204.221a12.515,12.515,0,0,1,12.555-12.189,12.56,12.56,0,0,1,12.56,12.56,12.5,12.5,0,0,1-1.626,6.185" transform="translate(860.617 -192.032)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Caminho_340" data-name="Caminho 340" d="M-1043.3,468.9l-8.771,19.593a1.746,1.746,0,0,0,.184,1.744l2.5,3.416a3.243,3.243,0,0,0,3.568,1.188l3.058-.936a1.787,1.787,0,0,0,.344-.146l.543-.3a1.777,1.777,0,0,0,.87-1.943l-.161-.714a1.778,1.778,0,0,1,.87-1.943l.64-.356a1.778,1.778,0,0,0,.87-1.943l-.161-.714a1.777,1.777,0,0,1,.87-1.943l.639-.356a1.778,1.778,0,0,0,.87-1.943l-.161-.714a1.777,1.777,0,0,1,.87-1.943l.639-.356a1.777,1.777,0,0,0,.87-1.943l-.161-.714a1.777,1.777,0,0,1,.87-1.943" transform="translate(1052.221 -442.688)" fill="rgba(0,0,0,0)" stroke="#8944a7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <path id="Caminho_341" data-name="Caminho 341" d="M-686.505,530.145a5.346,5.346,0,0,0-4.224,2.083,5.347,5.347,0,0,0-4.225-2.083,5.457,5.457,0,0,0-5.4,5.514c0,5.986,6.963,12.066,9.623,12.066s9.622-6.739,9.622-12.066A5.457,5.457,0,0,0-686.505,530.145Z" transform="translate(1524.59 1966.857)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

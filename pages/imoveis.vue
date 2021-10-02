@@ -49,7 +49,7 @@
         <div class="row" id="filtros-container" :class="{'show-filters':showFilters}" v-else>
           <div class="toggle-filtros mobile-only">
             <button class="button button--secondary" @click="showFilters=!showFilters">
-              <img src="/static/images/filter-red.svg" alt="Ícone de filtro" aria-hidden="true" class="button__icon">
+              <img src="/images/filter-red.svg" alt="Ícone de filtro" aria-hidden="true" class="button__icon">
               Filtros
             </button>
             <button class="button button--borderless button--gray button--paddingless cancel-button" @click="showFilters=false">Cancelar</button>
