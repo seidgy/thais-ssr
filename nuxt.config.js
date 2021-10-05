@@ -1,4 +1,6 @@
 const webpack = require("webpack");
+//import fs from 'fs'
+//import axios from 'axios'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -83,5 +85,24 @@ export default {
     VUE_APP_SERVER_URI: process.env.VUE_APP_SERVER_URI || 'https://backend.thaisimobiliaria.com.br',
     VUE_APP_TOKEN_RECAPTCHA: process.env.VUE_APP_TOKEN_RECAPTCHA || '6Ld3QNQUAAAAAMU0ZN09cEO5whGn4k60eUeb-wXY',
     VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL || 'https://novo.thaisimobiliaria.com.br'
-  }
+  },
+  
+  /*hooks: {
+    build: {
+      async before(builder) {
+        await $recaptchaLoaded()
+        const token = await $recaptcha('login')
+        const imoveis = await axios.post(
+          process.env.VUE_APP_SERVER_URI+'/imoveisHec/getAllImoveis',
+          {}, 
+          {withCredentials: false,
+            headers: {
+              'Content-Type': 'application/json',
+              'authorization': token
+            },
+          }
+        );
+      }
+    }
+  }*/
 }
