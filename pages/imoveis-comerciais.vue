@@ -124,7 +124,7 @@
                     <div class="search-form__option" >
                       <input type="radio" :id="'quarto-'+item" name="minimoQuartos" :value="item" v-model="retImoveis.minimoQuartos" class="search-form__radio">
                       <label :for="'quarto-'+item" class="search-form__custom-radio search-form__custom-radio" tabindex="0"></label>
-                      <label :for="'quarto-'+item" class="search-form__label search-form__label--lower">{{item}}+</label>
+                      <label :for="'quarto-'+item" class="search-form__label search-form__label--lower">{{item}}{{ item>=5?'+':'' }}</label>
                     </div>
                   </div>
                 </simplebar>
@@ -138,7 +138,7 @@
                     <div class="search-form__option" >
                       <input type="radio" :id="'vaga-'+item" name="minimoVagas" :value="item" v-model="retImoveis.minimoVagas" class="search-form__radio">
                       <label :for="'vaga-'+item" class="search-form__custom-radio search-form__custom-radio" tabindex="0"></label>
-                      <label :for="'vaga-'+item" class="search-form__label search-form__label--lower">{{item}}+</label>
+                      <label :for="'vaga-'+item" class="search-form__label search-form__label--lower">{{item}}{{ item>=5?'+':'' }}</label>
                     </div>
                   </div>
                 </simplebar>
@@ -152,7 +152,7 @@
                     <div class="search-form__option" >
                       <input type="radio" :id="'banheiro-'+item" name="minimoBanheiros" :value="item" v-model="retImoveis.minimoBanheiros" class="search-form__radio">
                       <label :for="'banheiro-'+item" class="search-form__custom-radio search-form__custom-radio" tabindex="0"></label>
-                      <label :for="'banheiro-'+item" class="search-form__label search-form__label--lower">{{item}}+</label>
+                      <label :for="'banheiro-'+item" class="search-form__label search-form__label--lower">{{item}}{{ item>=5?'+':'' }}</label>
                     </div>
                   </div>
                 </simplebar>

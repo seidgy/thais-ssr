@@ -30,7 +30,7 @@
       </div>
       <div class="info__box">
         <div class="info__title">Águas Claras</div>
-        <div class="info__text">Rua 9, 0 - Lote 09 Sul, Loja 02 - Próximo Estação Arniqueiras - Águas Claras/DF Como chegar</div>
+        <div class="info__text">Rua 9, 0 - Lote 09 Sul, Loja 02 - Próximo Estação Arniqueiras - Águas Claras/DF</div>
       </div>
     </div>
   </section>
