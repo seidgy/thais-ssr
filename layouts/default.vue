@@ -23,6 +23,7 @@ export default {
   methods: {
     onResize() {
       this.windowWidth = window.innerWidth
+      this.$store.commit('changeWindowWidth', window.innerWidth);
     }
   },
   mounted(){

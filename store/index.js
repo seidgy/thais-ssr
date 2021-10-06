@@ -1,12 +1,14 @@
 export const state = () => ({
   favoritos: process.browser && localStorage.getItem('favoritos')?JSON.parse(localStorage.getItem('favoritos')):[],
-  compare: process.browser && localStorage.getItem('compare')?JSON.parse(localStorage.getItem('compare')):[]
+  compare: process.browser && localStorage.getItem('compare')?JSON.parse(localStorage.getItem('compare')):[],
+  windowWidth: 0
 })
 
 export const mutations = {
   checkState: (state) => {
-    state.favoritos = localStorage.getItem('favoritos')?JSON.parse(localStorage.getItem('favoritos')):[];
+    state.favoritos = localStorage.getItem('favoritos')?JSON.parse(localStorage.getItem('favoritos')):[]
     state.compare = localStorage.getItem('compare')?JSON.parse(localStorage.getItem('compare')):[]
+    state.windowWidth = 0
   },
   toggleFav: (state,codigo_imovel) => {
     if(state.favoritos.find(aux => aux==codigo_imovel)){
@@ -20,7 +22,6 @@ export const mutations = {
     }
   },
   toggleCompare: (state,codigo_imovel) => {
-    console.log(state.compare,codigo_imovel)
     if(state.compare.find(aux => aux==codigo_imovel)){
       state.compare.splice(state.compare.indexOf(codigo_imovel),1);
     }else if(state.compare.length < 3){
@@ -31,4 +32,7 @@ export const mutations = {
       localStorage.setItem("compare",JSON.stringify(state.compare))
     }
   },
+  changeWindowWidth: (state, payload) => {
+    state.windowWidth = payload
+  }
 }

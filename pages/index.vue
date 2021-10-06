@@ -70,7 +70,7 @@
     </section>
     <section class="about">
       <img src="/images/experiencia.svg" alt="É mais fácil contar com a experiência" class="about__image">
-      <div v-if="this.$parent.windowWidth > 768" class="doubts__list">
+      <div v-if="this.windowWidth > 768" class="doubts__list">
         <div class="doubt-box">
           <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
         </div>
@@ -91,27 +91,27 @@
         </div>
       </div>
       <div v-else class="mobile-about">
-          <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
-          <!--<carousel-3d :width="200" :height="200" :autoplay="true" :autoplayTimeout="5000">
-            <slide :index="0">
-              <div class="doubt-box">
-                <img src="/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
-                <p class="doubt-box__text">A união entre experiência e modernidade</p>
-              </div>
-            </slide>
-            <slide :index="1">
-              <div class="doubt-box">
-                <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
-                <p class="doubt-box__text">Respeito pelo o que você procura</p>
-              </div>
-            </slide>
-            <slide :index="2">
-              <div class="doubt-box">
-                <img src="/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
-                <p class="doubt-box__text">Uma equipe que oferece o seu melhor</p>
-              </div>
-            </slide>
-          </carousel-3d>-->
+        <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
+        <carousel-3d :width="200" :height="200" :autoplay="true" :autoplayTimeout="5000">
+          <slide :index="0">
+            <div class="doubt-box">
+              <img src="/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
+              <p class="doubt-box__text">A união entre experiência e modernidade</p>
+            </div>
+          </slide>
+          <slide :index="1">
+            <div class="doubt-box">
+              <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
+              <p class="doubt-box__text">Respeito pelo o que você procura</p>
+            </div>
+          </slide>
+          <slide :index="2">
+            <div class="doubt-box">
+              <img src="/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
+              <p class="doubt-box__text">Uma equipe que oferece o seu melhor</p>
+            </div>
+          </slide>
+        </carousel-3d>
       </div>
     </section>
     <div style="display:none">
@@ -121,7 +121,7 @@
 </template>
 
 <script>
-//import { Carousel3d, Slide } from 'vue-carousel-3d/src/index.js'
+import {mapState} from 'vuex'
 import Autocomplete from '@trevoreyre/autocomplete-vue'
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
@@ -136,9 +136,11 @@ export default {
     Header,
     Footer
   },
+  computed: {
+      ...mapState(['windowWidth']),
+  },
   data(){
     return {
-      windowWidth: 0,
       textoBusca: '',
       tipo: 'aluguel',
       finalidade: 'Residencial',
@@ -349,9 +351,6 @@ export default {
     }
   },
   methods: {
-    onResize() {
-      this.windowWidth = window.innerWidth
-    },
     getImoveis() {
       let params = {
         finalidadeImovel: this.finalidade,
@@ -437,13 +436,6 @@ export default {
     this.listBairros.sort(function (a, b) {
       return a.localeCompare(b);
     });
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize)
-      this.onResize()
-    })
-  },
-  beforeDestroy() { 
-    window.removeEventListener('resize', this.onResize); 
   }
 }
 </script>
