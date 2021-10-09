@@ -241,14 +241,6 @@ export default {
   components: {
     Splide, SplideSlide, loading, cardImoveis
   },
-  metaInfo() {
-      return { 
-          title: "Thaís Imobiliária imovéis para venda e locação",
-          meta: [
-              { vmid: 'og:title', property: 'og:title', content: "Veja este imóvel que encontrei - " + this.$route.params.id},
-          ]
-      }
-  },
   computed: {
       ...mapState(['favoritos','compare']),
       maisDe3imoveisNaListaCompare: function(){

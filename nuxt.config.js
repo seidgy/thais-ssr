@@ -1,6 +1,11 @@
 const webpack = require("webpack");
-//import fs from 'fs'
-//import axios from 'axios'
+import getSiteMeta from "./utils/meta";
+const meta = getSiteMeta();
+/*import fs from 'fs'
+import path from 'path'
+import { access } from 'fs/promises';
+import { constants } from 'fs';
+import axios from 'axios'*/
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -13,18 +18,14 @@ export default {
       lang: 'en'
     },
     meta: [
+      ...meta,
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'format-detection', content: 'telephone=no' },
-      { hid: 'title', property: "title", content: "Thaís Imobiliária"},
-      { hid: 'keywords', property: "keywords", content: "vendadeimoveis,locaçãodeimoveis,guara,asasul,asanorte,aguasclaras,sudoeste,noroeste,brasilia,apartamento,casa,imobiliariabrasilia"},
+      { hid: 'viewport', name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'format-detection', name: 'format-detection', content: 'telephone=no' },
+      { hid: 'title', name: "title", content: "Thaís Imobiliária"},
+      { hid: 'keywords', name: "keywords", content: "vendadeimoveis,locaçãodeimoveis,guara,asasul,asanorte,aguasclaras,sudoeste,noroeste,brasilia,apartamento,casa,imobiliariabrasilia"},
       { hid: 'description', name: 'description', content:  'Imovéis para venda e locação'},
-      { hid: 'og:description', property: 'og:description', content: "Thaís Imobiliária imovéis para venda e locação"},
-      { hid: 'og:site_name', property: 'og:site_name', content: 'Thaís Imobiliária'},
-      { hid: 'og:url', property: 'og:url', content: 'https://novo.thaisimobiliaria.com.br/'},   
-      { hid: 'og:type', property: 'og:type', content: 'website'},   
-      { hid: 'og:image', property: 'og:image', content: "https://managing-images.kenlo.io/unsafe/600x400/filters:quality(100)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1s0xgxSbBGOsBT9+RO1zjks-ynciLnlXpdKzsuCVZKPvMZhGt-GI0v+QFtypVh7xY3icsFUfjv4HHembm5wv7fiGO536-3h5Ts7uLDcYCHkIkx36P+GAOhv-Q1TYF+Yx0oNrkjGhayU4mMNSFcqnywpkzMApYcDjsIkihq3TwLiXGSRtX2r1N9gXmfBv-V53TUCe28WXh7OsFfAttJ8h8PpwKpSRFyvwoXqw==.png"}, 
-      { hid: 'robots', content: 'index,follow'} 
+      { hid: 'robots', name: 'robots', content: 'index,follow'} 
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -62,8 +63,13 @@ export default {
         sv: '6',
     }],
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/content'
   ],
+
+  content: {
+    // Options
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -90,18 +96,39 @@ export default {
   /*hooks: {
     build: {
       async before(builder) {
-        await $recaptchaLoaded()
-        const token = await $recaptcha('login')
         const imoveis = await axios.post(
-          process.env.VUE_APP_SERVER_URI+'/imoveisHec/getAllImoveis',
-          {}, 
-          {withCredentials: false,
-            headers: {
-              'Content-Type': 'application/json',
-              'authorization': token
-            },
-          }
+          process.env.VUE_APP_SERVER_URI+'/imoveisHec/getAllImoveisServer'
         );
+        const dir = './content/imoveis'
+        fs.readdir(dir, (err, files) => {
+          if (err) throw err;
+          for (const file of files) {
+            fs.unlink(path.join(dir, file), err => {
+              if (err) throw err;
+            });
+          }
+        });
+        try {
+          await access(dir, constants.R_OK | constants.W_OK);
+          await imoveis.data.imoveis.forEach((imovel) => {
+            let i = {}
+            i.title = imovel.codigo_imovel;
+            i.codigo_imovel = imovel.codigo_imovel;
+            i.titulo = imovel.imovel.titulo_imovel;
+            i.bairro = imovel.imovel.bairro;
+            if(imovel.ofertas[0]){
+              i.tipo = imovel.ofertas[0].tipo_oferta == 1 ? 'Aluguel' : 'Compra';
+            }
+            if(imovel.fotos[0]) {
+              i.foto = imovel.fotos[0].url_arquivo;
+            }
+            fs.writeFile(dir+"/"+imovel.codigo_imovel+".json", JSON.stringify(i), function(err, result) {
+              if(err) console.log('error', err);
+            });;
+          });
+        } catch {
+          console.error('cannot access');
+        }
       }
     }
   }*/

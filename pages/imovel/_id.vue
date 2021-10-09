@@ -58,7 +58,7 @@
                         <span class="info-box__value info-box__highlight">R$ {{getTotal(oferta)}}/mês</span>
                       </div>
                       <div class="imovel__buttons">
-                        <a href="#"@click.prevent="setCompare()" class="button button--big button--secondary">Compare</a>
+                        <a href="#" @click.prevent="setCompare()" class="button button--big button--secondary">Compare</a>
                         <a href="#" @click.prevent="handleVisita()" class="button button--big button--primary" taget="_blank">Visite</a>
                       </div>
                       <div class="imovel__buttons">
@@ -227,26 +227,23 @@
 </template>
 
 <script>
-import axios from 'axios';
 import {mapState} from 'vuex'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import loading from '../../components/common/loading'
 import cardImoveis from '../../components/cardImoveis'
 import utils from '../../utils/functions.js'
+import getSiteMeta from "../../utils/meta";
 
 export default {
-  name: 'Imovel',
   components: {
     Splide, SplideSlide, loading, cardImoveis
   },
-  metaInfo() {
-      return { 
-          title: "Thaís Imobiliária imovéis para venda e locação",
-          meta: [
-              { vmid: 'og:title', property: 'og:title', content: "Veja este imóvel que encontrei - " + this.$route.params.id},
-          ]
-      }
+  async asyncData({ $content, params }) {
+    console.log(params)
+    const imovelData = await $content('imoveis', params.id).fetch()
+    console.log(imovelData)
+    return { imovelData }
   },
   computed: {
       ...mapState(['favoritos','compare']),
@@ -255,7 +252,26 @@ export default {
       },
       imovelNaListaCompare : function(){
             return (this.compare.find(com => com == this.codigoImovel)) ? true:false
-      }
+      },
+      meta() {
+      const metaData = {
+        type: "website",
+        url: "https://novo.thaisimobiliaria.com.br/imovel/"+this.imovelData.codigo_imovel,
+        title: this.imovelData.titulo,
+        description: "Veja este imóvel que encontrei na Thaís",
+        picture: this.imovelData.foto,
+        site_name: "Thaís Imobiliária"
+      };
+      return getSiteMeta(metaData);
+    }
+  },
+  head() {
+    return {
+      title: 'Thaís Imobiliária - '+this.imovelData.titulo,
+      meta : [
+        ...this.meta
+      ]
+    }
   },
   watch: {
     $route: {

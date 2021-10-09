@@ -125,24 +125,6 @@ export default {
     Carousel3d,
     Slide
   },
-  metaInfo() {
-      return { 
-          title: "Thaís Imobiliária imovéis para venda e locação",
-          meta: [
-              { name: 'description', content:  'Thaís Imobiliária imovéis para venda e locação'},
-              { name: 'keywords', content: 'vendadeimoveis,locaçãodeimoveis,guara,asasul,asanorte,aguasclaras,sudoeste,noroeste,brasilia,apartamento,casa,imobiliariabrasilia'},
-              { property: 'og:title', content: "Thaís Imobiliária"},
-              { property: 'og:description', content: "Thaís Imobiliária imovéis para venda e locação"},
-              { property: 'og:site_name', content: 'Thaís Imobiliária'},
-              {property: 'og:url', content: 'https://novo.thaisimobiliaria.com.br'},   
-              {property: 'og:type', content: 'website'},   
-              {property: 'og:image:width', content: '550'},
-              {property: 'og:image:height', content: '309'}, 
-              {property: 'og:image:height', content: 'https://managing-images.kenlo.io/unsafe/600x400/filters:quality(100)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1s0xgxSbBGOsBT9+RO1zjks-ynciLnlXpdKzsuCVZKPvMZhGt-GI0v+QFtypVh7xY3icsFUfjv4HHembm5wv7fiGO536-3h5Ts7uLDcYCHkIkx36P+GAOhv-Q1TYF+Yx0oNrkjGhayU4mMNSFcqnywpkzMApYcDjsIkihq3TwLiXGSRtX2r1N9gXmfBv-V53TUCe28WXh7OsFfAttJ8h8PpwKpSRFyvwoXqw==.png'}, 
-              {name: 'robots', content: 'index,follow'} 
-          ]
-      }
-  },
   data(){
     return {
       textoBusca: '',
