@@ -24,7 +24,6 @@ export class ImoveiService {
   }
 
   async getImoveisByFiltro(token, params) {
-    console.log('AQUI')
     var postData = {params}
     return axios.post(process.env.VUE_APP_SERVER_URI+'/imoveisHec/getImoveisList',
     JSON.stringify(postData), 

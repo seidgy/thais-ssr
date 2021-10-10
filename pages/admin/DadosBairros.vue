@@ -78,7 +78,6 @@ export default {
       
       this.carregando = true
       this.$bairros.buscar(token).then(ret => {
-        console.log('ret -> ', ret)
         this.bairros = ret.data
       }).catch(err=>{
         console.log('ERRO -> ',err)

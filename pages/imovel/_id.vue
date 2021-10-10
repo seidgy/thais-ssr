@@ -4,18 +4,20 @@
       <loading/>
     </p>
     <div v-else>
-      <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre '+dadosImovel.imovel.titulo_imovel+' Código: '+dadosImovel.codigo_imovel+' URL:'+url" class="whatsapp">
+      <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre '+dadosImovel.imovel.titulo_imovel+' Código: '+dadosImovel.codigo_imovel+' URL: https://novo.thaisimobiliaria.com.br/imovel/'+this.imovelData.codigo_imovel" class="whatsapp">
         <img src="/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
         <span class="sr-only">Abre em uma nova aba</span>
       </a>
       <h1 class="sr-only">{{dadosImovel.imovel.titulo_imovel}}</h1>
       <div class="banner">
         <div class="big-slider">
-          <splide :options="splideOptions">
-            <splide-slide v-for="foto in dadosImovel.fotos" v-bind:key="foto._id" >
-              <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
-            </splide-slide>
-          </splide>
+          <client-only>
+            <splide :options="splideOptions">
+              <splide-slide v-for="foto in dadosImovel.fotos" v-bind:key="foto._id" >
+                <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
+              </splide-slide>
+            </splide>
+          </client-only>
         </div>
       </div>
       <div class="container container--dados-imovel">
@@ -228,8 +230,7 @@
 
 <script>
 import {mapState} from 'vuex'
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+//import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import loading from '../../components/common/loading'
 import cardImoveis from '../../components/cardImoveis'
 import utils from '../../utils/functions.js'
@@ -237,12 +238,10 @@ import getSiteMeta from "../../utils/meta";
 
 export default {
   components: {
-    Splide, SplideSlide, loading, cardImoveis
+    loading, cardImoveis
   },
   async asyncData({ $content, params }) {
-    console.log(params)
     const imovelData = await $content('imoveis', params.id).fetch()
-    console.log(imovelData)
     return { imovelData }
   },
   computed: {
@@ -251,7 +250,7 @@ export default {
             return this.compare.length == 3 ? true:false
       },
       imovelNaListaCompare : function(){
-            return (this.compare.find(com => com == this.codigoImovel)) ? true:false
+            return (this.compare.find(com => com == this.imovelData.codigo_imovel)) ? true:false
       },
       meta() {
       const metaData = {
@@ -277,7 +276,7 @@ export default {
     $route: {
       immediate: true,  
       handler(to) {       
-        this.getImovel(this.codigoImovel)
+        this.getImovel(this.imovelData.codigo_imovel)
         this.isCompare = this.imovelNaListaCompare
         this.imovTitle = to.query.title
       }
@@ -287,8 +286,6 @@ export default {
     return {
       primeiroRetorno: null,
       segundoRetorno: null,
-      url: window.location.href,
-      codigoImovel: this.$route.params.id,
       imovTitle: null,
       favorito: false,
       isCompare: false,
@@ -316,29 +313,31 @@ export default {
   },
   methods: {
     async getImovel(codigo_imovel){
-      this.carregando = true
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
+      if (process.client) {
+        this.carregando = true
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
 
-      this.$imoveis.getImoveisByIdImovel(token,codigo_imovel).then(ret => {
-        this.dadosImovel = ret.data
-        this.favorito = this.favoritos.find(fav => fav == this.dadosImovel.codigo_imovel)? true: false
+        this.$imoveis.getImoveisByIdImovel(token,codigo_imovel).then(ret => {
+          this.dadosImovel = ret.data
+          this.favorito = this.favoritos.find(fav => fav == this.dadosImovel.codigo_imovel)? true: false
 
-        this.enderecoQuinto = this.getUrlQUinto(this.dadosImovel.imovel.observacao);
-        // axios.get(
-        //     'https://www.cepaberto.com/api/v3/cep?cep='+this.imovel.cep,
-        //     {headers: {'Authorization': 'Token token=160f2bf9d3632035f342253f6c23c8ef'}}
-        //     )
-        //   .then(response => console.log(response))
-        //   .catch(error => console.log(error))
+          this.enderecoQuinto = this.getUrlQUinto(this.dadosImovel.imovel.observacao);
+          // axios.get(
+          //     'https://www.cepaberto.com/api/v3/cep?cep='+this.imovel.cep,
+          //     {headers: {'Authorization': 'Token token=160f2bf9d3632035f342253f6c23c8ef'}}
+          //     )
+          //   .then(response => console.log(response))
+          //   .catch(error => console.log(error))
 
-        this.getInformacoesBairro(ret.data.imovel.bairro)
-        this.getPrimeiroRetorno()
-      }).catch(err=>{
-        console.log('ERRO -> ',err)
-      }).finally(() => {
-        this.carregando = false;
-      })
+          this.getInformacoesBairro(ret.data.imovel.bairro)
+          this.getPrimeiroRetorno()
+        }).catch(err=>{
+          console.log('ERRO -> ',err)
+        }).finally(() => {
+          this.carregando = false;
+        })
+      }
     },
     getUrlQUinto(obs) {
       const arrayURL = obs.split('https://www.quintoandar.com.br/imovel/');
@@ -353,12 +352,14 @@ export default {
         this.favorito = !this.favorito
         this.$emit('afterClickFavorito')
     },
-    async getInformacoesBairro(ra){
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      this.$bairros.getBairro(token,ra).then(ret=>{
-        this.bairro = ret.data;
-      });
+    async getInformacoesBairro(ra){      
+      if (process.client) {
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        this.$bairros.getBairro(token,ra).then(ret=>{
+          this.bairro = ret.data;
+        });
+      }
     },
     getTotal(oferta){
       return (
@@ -385,71 +386,75 @@ export default {
         this.$router.push('/compare');
     },
     async getPrimeiroRetorno() {
-      const termoBusca = {
-        'ofertas.tipo_oferta': this.dadosImovel.ofertas[0].tipo_oferta,
-        'finalidade': this.dadosImovel.imovel.finalidade
-      };
-      let params = {
-        limit: 5,
-        page: 1,
-        sort: {'imovel.cidade': 'asc'},
-        termoBusca: termoBusca
-      };
-      params.finalidade = [this.dadosImovel.imovel.finalidade];
-      params.tipo_imovel = [this.dadosImovel.imovel.tipo_imovel];
-      params.bairro = [this.dadosImovel.imovel.bairro];
-      params.maximoPreco = parseInt(this.dadosImovel.ofertas[0].preco_oferta,10)+(this.dadosImovel.ofertas[0].tipo_oferta==1?300:30000)
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
-        this.primeiroRetorno= ret.data;
-        const codigo = this.dadosImovel.codigo_imovel;
-        if(this.primeiroRetorno.imoveis.length >= 2) {
-          const imoveis = this.primeiroRetorno.imoveis.filter(function (imovel) {
-            return imovel.codigo_imovel != codigo
-          })
-          this.primeiroRetorno.imoveis = imoveis
-        } if (this.primeiroRetorno.imoveis.length < 4) {
-          this.getSegundoRetorno(this.primeiroRetorno.imoveis.length)
-        }
-      }).catch(err=>{
-        console.log('ERRO -> ',err)
-      }).finally(() => true)
+      if (process.client) {
+        const termoBusca = {
+          'ofertas.tipo_oferta': this.dadosImovel.ofertas[0].tipo_oferta,
+          'finalidade': this.dadosImovel.imovel.finalidade
+        };
+        let params = {
+          limit: 5,
+          page: 1,
+          sort: {'imovel.cidade': 'asc'},
+          termoBusca: termoBusca
+        };
+        params.finalidade = [this.dadosImovel.imovel.finalidade];
+        params.tipo_imovel = [this.dadosImovel.imovel.tipo_imovel];
+        params.bairro = [this.dadosImovel.imovel.bairro];
+        params.maximoPreco = parseInt(this.dadosImovel.ofertas[0].preco_oferta,10)+(this.dadosImovel.ofertas[0].tipo_oferta==1?300:30000)
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
+          this.primeiroRetorno= ret.data;
+          const codigo = this.dadosImovel.codigo_imovel;
+          if(this.primeiroRetorno.imoveis.length >= 2) {
+            const imoveis = this.primeiroRetorno.imoveis.filter(function (imovel) {
+              return imovel.codigo_imovel != codigo
+            })
+            this.primeiroRetorno.imoveis = imoveis
+          } if (this.primeiroRetorno.imoveis.length < 4) {
+            this.getSegundoRetorno(this.primeiroRetorno.imoveis.length)
+          }
+        }).catch(err=>{
+          console.log('ERRO -> ',err)
+        }).finally(() => true)
+      }
     },
     async getSegundoRetorno(size) {
-      const termoBusca = {
-        'ofertas.tipo_oferta': this.dadosImovel.ofertas[0].tipo_oferta,
-        'finalidade': this.dadosImovel.imovel.finalidade
-      };
-      let params = {
-        limit: 8,
-        page: 1,
-        sort: {'imovel.cidade': 'asc'},
-        termoBusca: termoBusca
-      };
-      params.finalidade = [this.dadosImovel.imovel.finalidade];
-      params.bairro = [this.dadosImovel.imovel.bairro];
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
-        this.segundoRetorno = ret.data;
-        const codigo = this.dadosImovel.codigo_imovel;
-        if(this.segundoRetorno.imoveis.length > 0) {
-          let primeiro = this.primeiroRetorno.imoveis.map(function(imovel2){
-            return imovel2.codigo_imovel
-          })
-          primeiro.push(this.dadosImovel.codigo_imovel)
-          const imoveis = this.segundoRetorno.imoveis.filter(function (imovel) {
-            return !primeiro.includes(imovel.codigo_imovel)
-          })
-          this.segundoRetorno.imoveis = imoveis
-        } if (this.segundoRetorno.imoveis.length > 4-size) {
-          this.segundoRetorno.imoveis = this.segundoRetorno.imoveis.slice(0, 4-size)
-        }
-        this.primeiroRetorno.imoveis = this.primeiroRetorno.imoveis.concat(this.segundoRetorno.imoveis)
-      }).catch(err=>{
-        console.log('ERRO -> ',err)
-      }).finally(() => true)
+      if (process.client) {
+        const termoBusca = {
+          'ofertas.tipo_oferta': this.dadosImovel.ofertas[0].tipo_oferta,
+          'finalidade': this.dadosImovel.imovel.finalidade
+        };
+        let params = {
+          limit: 8,
+          page: 1,
+          sort: {'imovel.cidade': 'asc'},
+          termoBusca: termoBusca
+        };
+        params.finalidade = [this.dadosImovel.imovel.finalidade];
+        params.bairro = [this.dadosImovel.imovel.bairro];
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
+          this.segundoRetorno = ret.data;
+          const codigo = this.dadosImovel.codigo_imovel;
+          if(this.segundoRetorno.imoveis.length > 0) {
+            let primeiro = this.primeiroRetorno.imoveis.map(function(imovel2){
+              return imovel2.codigo_imovel
+            })
+            primeiro.push(this.dadosImovel.codigo_imovel)
+            const imoveis = this.segundoRetorno.imoveis.filter(function (imovel) {
+              return !primeiro.includes(imovel.codigo_imovel)
+            })
+            this.segundoRetorno.imoveis = imoveis
+          } if (this.segundoRetorno.imoveis.length > 4-size) {
+            this.segundoRetorno.imoveis = this.segundoRetorno.imoveis.slice(0, 4-size)
+          }
+          this.primeiroRetorno.imoveis = this.primeiroRetorno.imoveis.concat(this.segundoRetorno.imoveis)
+        }).catch(err=>{
+          console.log('ERRO -> ',err)
+        }).finally(() => true)
+      }
     },
     share() {
         utils.shareButton(this.dadosImovel.codigo_imovel, this.dadosImovel.imovel.titulo_imovel, document.location.origin+'/imovel?codImovel='+this.dadosImovel.codigo_imovel+'&title='+this.dadosImovel.imovel.titulo_imovel);

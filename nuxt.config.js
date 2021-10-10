@@ -1,11 +1,6 @@
 const webpack = require("webpack");
 import getSiteMeta from "./utils/meta";
 const meta = getSiteMeta();
-/*import fs from 'fs'
-import path from 'path'
-import { access } from 'fs/promises';
-import { constants } from 'fs';
-import axios from 'axios'*/
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -78,58 +73,12 @@ export default {
       new webpack.ProvidePlugin({
         $: "jquery"
       })
-    ],
+    ]
   },
-
-  /*recaptcha: {
-    siteKey: process.env.VUE_APP_TOKEN_RECAPTCHA, 
-    hideBadge: true, 
-    version: 2
-  },*/
 
   env: {
     VUE_APP_SERVER_URI: process.env.VUE_APP_SERVER_URI || 'https://backend.thaisimobiliaria.com.br',
     VUE_APP_TOKEN_RECAPTCHA: process.env.VUE_APP_TOKEN_RECAPTCHA || '6Ld3QNQUAAAAAMU0ZN09cEO5whGn4k60eUeb-wXY',
     VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL || 'https://novo.thaisimobiliaria.com.br'
   },
-  
-  /*hooks: {
-    build: {
-      async before(builder) {
-        const imoveis = await axios.post(
-          process.env.VUE_APP_SERVER_URI+'/imoveisHec/getAllImoveisServer'
-        );
-        const dir = './content/imoveis'
-        fs.readdir(dir, (err, files) => {
-          if (err) throw err;
-          for (const file of files) {
-            fs.unlink(path.join(dir, file), err => {
-              if (err) throw err;
-            });
-          }
-        });
-        try {
-          await access(dir, constants.R_OK | constants.W_OK);
-          await imoveis.data.imoveis.forEach((imovel) => {
-            let i = {}
-            i.title = imovel.codigo_imovel;
-            i.codigo_imovel = imovel.codigo_imovel;
-            i.titulo = imovel.imovel.titulo_imovel;
-            i.bairro = imovel.imovel.bairro;
-            if(imovel.ofertas[0]){
-              i.tipo = imovel.ofertas[0].tipo_oferta == 1 ? 'Aluguel' : 'Compra';
-            }
-            if(imovel.fotos[0]) {
-              i.foto = imovel.fotos[0].url_arquivo;
-            }
-            fs.writeFile(dir+"/"+imovel.codigo_imovel+".json", JSON.stringify(i), function(err, result) {
-              if(err) console.log('error', err);
-            });;
-          });
-        } catch {
-          console.error('cannot access');
-        }
-      }
-    }
-  }*/
 }

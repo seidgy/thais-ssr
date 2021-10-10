@@ -109,7 +109,6 @@ export default {
         await this.$recaptchaLoaded()
         const token = await this.$recaptcha('login')
         this.$imoveis.deleteImovel(token,this.codImovel).then(ret => {
-          console.log(ret)
           this.excluido = 'excluido';
         }).catch(err=>{
           console.log('ERRO -> ',err);

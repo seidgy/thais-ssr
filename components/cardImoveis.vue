@@ -2,11 +2,13 @@
 <div>
   <div class="imovel__carrossel">      
         <div class="carousel">
-            <splide :options="splideOptions" ref="slider">
-            <splide-slide v-for="foto in imovel.fotos" v-bind:key="foto._id" >
-                <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
-            </splide-slide>
-            </splide>
+            <client-only>   
+                <splide :options="splideOptions" ref="slider">
+                <splide-slide v-for="foto in imovel.fotos" v-bind:key="foto._id" >
+                    <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
+                </splide-slide>
+                </splide>
+            </client-only>
         </div>
         <span class="imovel__bairro">{{imovel.imovel.bairro}}</span>
         <!--v-bind:click="{utils}.addAttribute(imovel.imovel.id, 'fav', true)"-->

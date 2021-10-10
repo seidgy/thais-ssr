@@ -325,7 +325,6 @@ export default {
         if(this.paramsPagina.textoBusca || this.paramsPagina.textoBusca==='') {
           this.$imoveis.buscar(token,this.paramsPagina).then(ret => {
             const primeiraConsulta = ret.data;
-            console.log(primeiraConsulta)
             if(primeiraConsulta.listaBairros && primeiraConsulta.listaBairros.length <= 6) {
               paramsConsulta.bairro = [];
               primeiraConsulta.listaBairros.forEach(element => {
@@ -500,7 +499,6 @@ export default {
     if(window.innerWidth < 1270) {
       this.tipoVisualizacao = 'tabela';
     }
-    console.log(this.$route)
   },
   /*beforeDestroy() {
     this.$recaptcha.destroy()
