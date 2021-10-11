@@ -52,7 +52,7 @@
             </div>
             <div class="imovel__buttons">
                 <a href="#" @click.prevent="setCompare()" class="button button--secondary" :class="{'button--check':isCompare}">Compare</a>
-                <nuxt-link :to="{ name: 'imovel', params: {id: imovel.codigo_imovel}}" class="button button--primary">DETALHES</nuxt-link>
+                <nuxt-link :to="'/imovel/'+imovel.codigo_imovel" class="button button--primary">DETALHES</nuxt-link>
             </div>
             <div class="imovel__buttons">
                 <a href="" @click.prevent="share"><span class="imovel__share" :id="'share-'+imovel.codigo_imovel">Compartilhe</span></a>

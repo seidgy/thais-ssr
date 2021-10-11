@@ -1,14 +1,16 @@
 const fs = require('fs')
-const path = require('path')
 const axios = require('axios');
-var rimraf = require("rimraf");
 require('dotenv').config({path: './.env'})
 const server = process.env['VUE_APP_SERVER_URI']?process.env['VUE_APP_SERVER_URI']:'https://backend.thaisimobiliaria.com.br';
 
 const generator = async () => {
-    const imoveis = await axios.post(
-      server+'/imoveisHec/getAllImoveisServer'
-    );
+    try {
+      const imoveis = await axios.post(
+        server+'/imoveisHec/getAllImoveisServer'
+      );
+    } catch (err) {
+      console.log(err)
+    }
     const dir = './content/imoveis'    
     fs.rm(dir, { recursive: true }, async () => {
       if (!fs.existsSync(dir)){
