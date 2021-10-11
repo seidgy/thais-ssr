@@ -38,6 +38,9 @@ const generator = async () => {
         })
       });
     } else {
+      if (!fs.existsSync('./content')){  
+        fs.mkdirSync('./content');
+      }
       fs.mkdirSync(dir);
       fs.access(dir, fs.constants.R_OK | fs.constants.W_OK, async err => {
         if (err) {
