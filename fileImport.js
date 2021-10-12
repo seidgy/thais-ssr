@@ -32,7 +32,8 @@ const generator = async () => {
               }
               fs.writeFile(dir+"/"+imovel.codigo_imovel+".json", JSON.stringify(i), function(err, result) {
                 if(err) console.log('error', err);
-              });;
+              });
+              console.log('ARQUIVO ESCRITO ->', imovel.codigo_imovel+".json")
             });
           }
         })
