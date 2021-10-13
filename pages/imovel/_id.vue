@@ -205,8 +205,8 @@
     </div>-->
     </div>
     <!-- MODAL ALERT -->
-    <div class="modal" tabindex="-1" role="dialog" :id="'mdl-comparativo-'+dadosImovel.codigo_imovel">
-        <div class="modal-dialog" role="document">
+    <modal tabindex="-1" role="dialog" :id="'mdl-comparativo-'+imovelData.codigo_imovel" :name="'mdl-comparativo-'+imovelData.codigo_imovel">
+        <div class="myModal">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Comparativo</h5>
@@ -219,18 +219,17 @@
             <p v-else>Você já possui 3 imoveis no comparativo. Para incluir um novo remova um destes.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Navegando</button>
+                <button type="button" class="btn btn-secondary" @click="$modal.hide('mdl-comparativo-'+imovelData.codigo_imovel)">Continuar Navegando</button>
                 <button type="button" class="btn btn-primary" @click="irComparativo()">Ir para comparativo</button>
             </div>
             </div>
         </div>
-    </div>
+    </modal>
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
-//import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import loading from '../../components/common/loading'
 import cardImoveis from '../../components/cardImoveis'
 import utils from '../../utils/functions.js'
@@ -379,10 +378,10 @@ export default {
             this.$store.commit('toggleCompare', this.dadosImovel.codigo_imovel);
             this.isCompare = this.imovelNaListaCompare;
         }
-        $('#mdl-comparativo-'+this.dadosImovel.codigo_imovel).modal();
+        this.$modal.show('mdl-comparativo-'+this.imovelData.codigo_imovel);
     },
     irComparativo() {
-        $('#mdl-comparativo-'+this.dadosImovel.codigo_imovel).modal('hide');
+        this.$modal.show('mdl-comparativo-'+this.imovelData.codigo_imovel);
         this.$router.push('/compare');
     },
     async getPrimeiroRetorno() {

@@ -30,7 +30,11 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.scss',
-    '~/node_modules/bootstrap/dist/css/bootstrap.css'
+    '@/assets/css/bootstrap.min.css'
+  ],
+
+  js: [
+    '@/assets/js/bootstrap.min.js'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -39,7 +43,8 @@ export default {
     { src: '~/plugins/splide.client.js', ssr: false },
     { src: '~/plugins/recaptcha.js', ssr: false },
     { src: '~/plugins/services.plugin.js', ssr: false },
-    { src: '~/plugins/bootstrap.js', ssr: false }
+    { src: '~/plugins/modal.client.js', ssr: false },
+    //{ src: '~/plugins/bootstrap.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -68,12 +73,11 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    vendor: ["jquery", "bootstrap"],
-    plugins: [
+    /*plugins: [
       new webpack.ProvidePlugin({
         $: "jquery"
       })
-    ]
+    ],*/
   },
 
   env: {

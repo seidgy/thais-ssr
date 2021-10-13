@@ -64,8 +64,8 @@
 
 
     <!-- MODAL ALERT -->
-    <div class="modal" tabindex="-1" role="dialog" :id="'mdl-comparativo-'+imovel.codigo_imovel">
-        <div class="modal-dialog" role="document">
+    <modal tabindex="-1" role="dialog" :id="'mdl-comparativo-'+imovel.codigo_imovel" :name="'mdl-comparativo-'+imovel.codigo_imovel">
+        <div class="myModal">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Comparativo</h5>
@@ -78,12 +78,12 @@
             <p v-else>Você já possui 3 imoveis no comparativo. Para incluir um novo remova um destes.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Navegando</button>
+                <button type="button" class="btn btn-secondary" @click="$modal.hide('mdl-comparativo-'+imovel.codigo_imovel)">Continuar Navegando</button>
                 <button type="button" class="btn btn-primary" @click="irComparativo()">Ir para comparativo</button>
             </div>
             </div>
         </div>
-    </div>
+    </modal>
 </div>
 </template>
 
@@ -133,11 +133,10 @@ export default {
                 this.$store.commit('toggleCompare', this.imovel.codigo_imovel);
                 this.isCompare = this.imovelNaListaCompare;
             }
-            console.log('AQUI => ', $('#mdl-comparativo-'+this.imovel.codigo_imovel))
-            $('#mdl-comparativo-'+this.imovel.codigo_imovel).modal();
+            this.$modal.show('mdl-comparativo-'+this.imovel.codigo_imovel);
         },
         irComparativo() {
-            $('#mdl-comparativo-'+this.imovel.codigo_imovel).modal('hide');
+            this.$modal.show('mdl-comparativo-'+this.imovel.codigo_imovel);
             this.$router.push('/compare');
         },
         share() {
