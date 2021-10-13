@@ -18,6 +18,7 @@
               </splide-slide>
             </splide>
           </client-only>
+          <a href="#" @click.prevent="$modal.show('modal-galeria');" class="gallery-call" aria-hidden="true"></a>
         </div>
       </div>
       <div class="container container--dados-imovel">
@@ -205,7 +206,7 @@
     </div>-->
     </div>
     <!-- MODAL ALERT -->
-    <modal tabindex="-1" role="dialog" :id="'mdl-comparativo-'+imovelData.codigo_imovel" :name="'mdl-comparativo-'+imovelData.codigo_imovel">
+    <modal tabindex="-1" adaptive="true" role="dialog" :id="'mdl-comparativo-'+imovelData.codigo_imovel" :name="'mdl-comparativo-'+imovelData.codigo_imovel">
         <div class="myModal">
             <div class="modal-content">
             <div class="modal-header">
@@ -225,6 +226,21 @@
             </div>
         </div>
     </modal>
+    <modal tabindex="-1" role="dialog" name="modal-galeria" adaptive="true" width="80%" height="80%">
+      <client-only>
+        <div class="close-me">
+          <a href="#" @click.prevent="$modal.hide('modal-galeria')">
+            Fechar (x)
+          </a>
+        </div>
+        <splide :options="splideOptionsGallery">
+          <splide-slide v-for="foto in dadosImovel.fotos" v-bind:key="foto._id" >
+            <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
+          </splide-slide>
+        </splide>
+      </client-only>
+    </modal>
+    
   </div>
 </template>
 
@@ -298,6 +314,21 @@ export default {
           width  : '100%',
           cover: true,
           perPage: 3,
+          //autoplay: true,
+          pauseOnHover: true,
+          lazyload: true,
+          breakpoints: {
+            768: {
+              perPage: 1,
+              fixedWidth: '100%',
+            },
+          }
+      },
+      splideOptionsGallery: {
+			  	rewind : true,
+          width  : '100%',
+          cover: true,
+          perPage: 1,
           //autoplay: true,
           pauseOnHover: true,
           lazyload: true,
@@ -491,6 +522,7 @@ export default {
   height: 100%;
   width: 100%;
   display: block;
+  position: relative;
   &:after {
     content: '';
     position: absolute;
@@ -503,6 +535,15 @@ export default {
       background: linear-gradient(180deg, rgba(64, 64, 64, 0) 0%, #181818 90%, #181818 100%);
       top: 60%;
     }
+  }
+  .gallery-call {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+    display: block;
+    z-index: 100;
   }
 }
 
@@ -647,4 +688,14 @@ export default {
       left: 30px;
       transform: translateY(-50%);
     }
+
+.close-me {
+  width: 100%;
+  padding: 5px;
+  background: #000;
+  text-align: right;
+  a {
+    color: #FFF;
+  }
+}
 </style>
