@@ -133,6 +133,7 @@ export default {
                 this.$store.commit('toggleCompare', this.imovel.codigo_imovel);
                 this.isCompare = this.imovelNaListaCompare;
             }
+            console.log('AQUI => ', $('#mdl-comparativo-'+this.imovel.codigo_imovel))
             $('#mdl-comparativo-'+this.imovel.codigo_imovel).modal();
         },
         irComparativo() {

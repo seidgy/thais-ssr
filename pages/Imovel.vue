@@ -227,7 +227,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import axios from 'axios';
 import {mapState} from 'vuex'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
