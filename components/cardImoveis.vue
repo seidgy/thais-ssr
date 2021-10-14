@@ -3,6 +3,7 @@
   <div class="imovel__carrossel">      
         <div class="carousel">
             <client-only>   
+                <nuxt-link :to="'/imovel/'+imovel.codigo_imovel" class="carousel__link"><span class="sr-only">Acessar imóvel</span></nuxt-link>
                 <splide :options="splideOptions" ref="slider">
                 <splide-slide v-for="foto in imovel.fotos" v-bind:key="foto._id" >
                     <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
@@ -155,7 +156,17 @@ export default {
     .carousel {
         width: 100%;
         height: 100%;
+        position: relative;
     }
+
+        .carousel__link {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 15%;
+            right: 15%;
+        }
 
     .imovel__carrossel:after {
         position: absolute;
