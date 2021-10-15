@@ -5,7 +5,7 @@
         <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" target="_blank" class="outstanding-nav__link">Anuncie seu imóvel</a></li>
       </ul>
       <ul class="main-nav">
-        <li class="main-nav__li"><a href="http://clienteonline.thaisimobiliaria.com.br:8180/skw/login/?next=/" class="main-nav__link">Área do cliente</a></li>
+        <li class="main-nav__li"><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="main-nav__link">Área do cliente</a></li>
         <li class="main-nav__li main-nav__li--logo"><a href="/" class="main-nav__link main-nav__link--logo"><img alt="Thaís Imobiliária" src="/images/logo-thais.svg" /></a></li>
         <li class="main-nav__li"><a href="https://www.thaisimobiliaria.com.br/fale-conosco" class="main-nav__link">Fale conosco</a></li>
       </ul>
@@ -26,7 +26,7 @@
       <nav class="mobile-nav__container">
         <ul class="mobile-nav__menu">
           <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" class="mobile-nav__link mobile-nav__link--outstanding" target="_blank">Anuncie seu imóvel</a></li>
-          <li><a href="http://clienteonline.thaisimobiliaria.com.br:8180/skw/login/?next=/" class="mobile-nav__link">Área do cliente</a></li>
+          <li><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="mobile-nav__link">Área do cliente</a></li>
           <li><a href="https://www.thaisimobiliaria.com.br/fale-conosco" class="mobile-nav__link">Fale conosco</a></li>
         </ul>
       </nav>
