@@ -1,7 +1,7 @@
 <template>
   <div class="main row d-flex justify-content-center">
     <h1 class="sr-only">Encontre seu imóvel</h1>
-    <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre Imóveis '+(tipo=='aluguel'?'para alugar':'`à venda')+' URL:'+url" class="whatsapp">
+    <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre Imóveis '+(tipo=='aluguel'?'para alugar':'`à venda')+' URL:'+this.$route.fullPath" class="whatsapp"
       <img src="/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
       <span class="sr-only">Abre em uma nova aba</span>
     </a>
@@ -269,7 +269,6 @@ export default {
   },
   data() {
     return {
-      url: window.location.href,
       carregando: true,
       showMap: false,
       termoBusca:null,
@@ -306,100 +305,104 @@ export default {
   },
   methods: {
     async getImoveis(){
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      if(this.textoBusca || this.textoBusca==='') {
-        this.paramsPagina.textoBusca = this.textoBusca ? this.textoBusca: '';
-      }
-      this.paramsPagina.termoBusca = {
-        'ofertas.tipo_oferta': this.tipo == 'aluguel'?1:2,
-        'finalidade': this.finalidadeImovel?this.finalidadeImovel:null
-      };
-      let paramsConsulta = {
-        limit: this.paramsPagina.limit,
-        page: this.paramsPagina.page,
-        sort: this.paramsPagina.sort,
-        termoBusca: this.paramsPagina.termoBusca
-      };
-      this.carregando = true
-      if(this.paramsPagina.textoBusca || this.paramsPagina.textoBusca==='') {
-        this.$imoveis.buscar(token,this.paramsPagina).then(ret => {
-          const primeiraConsulta = ret.data;
-          if(primeiraConsulta.listaBairros && primeiraConsulta.listaBairros.length <= 6) {
-            paramsConsulta.bairro = [];
-            primeiraConsulta.listaBairros.forEach(element => {
-              paramsConsulta.bairro.push(element._id);
-            });
-          } 
-          if(primeiraConsulta.listTipoImovel && primeiraConsulta.listTipoImovel.length < 5) {
-            paramsConsulta.tipo_imovel = [];
-            primeiraConsulta.listTipoImovel.forEach(element => {
-              paramsConsulta.tipo_imovel.push(element._id);
-            });
-          } 
-          if(primeiraConsulta.listEndereco) {
-            paramsConsulta.endereco = [];
-            primeiraConsulta.listEndereco.forEach(element => {
-              paramsConsulta.endereco.push(element._id);
-            });
-          } 
-          if(primeiraConsulta.minimoQuartos >= 1) paramsConsulta.minimoQuartos = primeiraConsulta.minimoQuartos;
-          if(primeiraConsulta.minimoBanheiros >= 1) paramsConsulta.minimoBanheiros = primeiraConsulta.minimoBanheiros;
-          if(primeiraConsulta.minimoVagas >= 1) paramsConsulta.minimoVagas = primeiraConsulta.minimoVagas;
-          paramsConsulta.finalidade = primeiraConsulta.finalidade
+      if (process.client) {
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        if(this.textoBusca || this.textoBusca==='') {
+          this.paramsPagina.textoBusca = this.textoBusca ? this.textoBusca: '';
+        }
+        this.paramsPagina.termoBusca = {
+          'ofertas.tipo_oferta': this.tipo == 'aluguel'?1:2,
+          'finalidade': this.finalidadeImovel?this.finalidadeImovel:null
+        };
+        let paramsConsulta = {
+          limit: this.paramsPagina.limit,
+          page: this.paramsPagina.page,
+          sort: this.paramsPagina.sort,
+          termoBusca: this.paramsPagina.termoBusca
+        };
+        this.carregando = true
+        if(this.paramsPagina.textoBusca || this.paramsPagina.textoBusca==='') {
+          this.$imoveis.buscar(token,this.paramsPagina).then(ret => {
+            const primeiraConsulta = ret.data;
+            if(primeiraConsulta.listaBairros && primeiraConsulta.listaBairros.length <= 6) {
+              paramsConsulta.bairro = [];
+              primeiraConsulta.listaBairros.forEach(element => {
+                paramsConsulta.bairro.push(element._id);
+              });
+            } 
+            if(primeiraConsulta.listTipoImovel && primeiraConsulta.listTipoImovel.length < 5) {
+              paramsConsulta.tipo_imovel = [];
+              primeiraConsulta.listTipoImovel.forEach(element => {
+                paramsConsulta.tipo_imovel.push(element._id);
+              });
+            } 
+            if(primeiraConsulta.listEndereco) {
+              paramsConsulta.endereco = [];
+              primeiraConsulta.listEndereco.forEach(element => {
+                paramsConsulta.endereco.push(element._id);
+              });
+            } 
+            if(primeiraConsulta.minimoQuartos >= 1) paramsConsulta.minimoQuartos = primeiraConsulta.minimoQuartos;
+            if(primeiraConsulta.minimoBanheiros >= 1) paramsConsulta.minimoBanheiros = primeiraConsulta.minimoBanheiros;
+            if(primeiraConsulta.minimoVagas >= 1) paramsConsulta.minimoVagas = primeiraConsulta.minimoVagas;
+            paramsConsulta.finalidade = primeiraConsulta.finalidade
+            this.getImoveisFiltro(paramsConsulta);
+          }).catch(err=>{
+            console.log('ERRO -> ',err)
+          })
+        } else {
+          if(this.tipoImovel) paramsConsulta.tipo_imovel = this.tipoImovel;
+          if(this.bairroImovel) paramsConsulta.bairro = this.bairroImovel;
+          if(this.finalidadeImovel) paramsConsulta.finalidade = this.finalidadeImovel;
+          if(this.enderecoImovel) paramsConsulta.endereco = this.enderecoImovel;
+          if(this.minimoQuartos) paramsConsulta.minimoQuartos = parseInt(this.minimoQuartos,10);
+          if(this.minimoBanheiros) paramsConsulta.minimoBanheiros = parseInt(this.minimoBanheiros,10);
+          if(this.minimoVagas) paramsConsulta.minimoVagas = parseInt(this.minimoVagas,10);
+          if(this.minimoPreco) paramsConsulta.minimoPreco = parseInt(this.minimoPreco,10);
+          if(this.maximoPreco) paramsConsulta.maximoPreco = parseInt(this.maximoPreco,10);
+          if(this.minimoArea) paramsConsulta.minimoArea = parseInt(this.minimoArea,10);
+          if(this.maximoArea) paramsConsulta.maximoArea = parseInt(this.maximoArea,10);
+          this.buscaDireta = true;
           this.getImoveisFiltro(paramsConsulta);
-        }).catch(err=>{
-          console.log('ERRO -> ',err)
-        })
-      } else {
-        if(this.tipoImovel) paramsConsulta.tipo_imovel = this.tipoImovel;
-        if(this.bairroImovel) paramsConsulta.bairro = this.bairroImovel;
-        if(this.finalidadeImovel) paramsConsulta.finalidade = this.finalidadeImovel;
-        if(this.enderecoImovel) paramsConsulta.endereco = this.enderecoImovel;
-        if(this.minimoQuartos) paramsConsulta.minimoQuartos = parseInt(this.minimoQuartos,10);
-        if(this.minimoBanheiros) paramsConsulta.minimoBanheiros = parseInt(this.minimoBanheiros,10);
-        if(this.minimoVagas) paramsConsulta.minimoVagas = parseInt(this.minimoVagas,10);
-        if(this.minimoPreco) paramsConsulta.minimoPreco = parseInt(this.minimoPreco,10);
-        if(this.maximoPreco) paramsConsulta.maximoPreco = parseInt(this.maximoPreco,10);
-        if(this.minimoArea) paramsConsulta.minimoArea = parseInt(this.minimoArea,10);
-        if(this.maximoArea) paramsConsulta.maximoArea = parseInt(this.maximoArea,10);
-        this.buscaDireta = true;
-        this.getImoveisFiltro(paramsConsulta);
+        }
       }
     }, 
     async getImoveisFiltro(params) {
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
-        this.retImoveis= ret.data;
-        if((this.retImoveis.listTipoImovel && this.retImoveis.listTipoImovel.length == 1) || params.tipo_imovel) {
-          this.showtipo = true;
-          params.tipo_imovel ? this.filterTipo = params.tipo_imovel : this.filterTipo.push(this.retImoveis.listTipoImovel[0]._id);
-        }
-        if((this.retImoveis.listaBairros && this.retImoveis.listaBairros.length == 1) || params.bairro) {
-          this.showbairro = true;
-          params.bairro ? this.filterBairro = params.bairro : this.filterBairro.push(this.retImoveis.listaBairros[0]._id);
-        }
-        if((this.retImoveis.listFinalidade && this.retImoveis.listFinalidade.length == 1) || params.finalidade) {
-          this.showfinalidade = true;
-          params.finalidade ? this.filterFinalidade = params.finalidade : this.filterFinalidade.push(this.retImoveis.listFinalidade[0]._id);
-        }
-        if((this.retImoveis.listEndereco && this.retImoveis.listEndereco.length == 1) || params.endereco) {
-          if(this.buscaDireta || (this.retImoveis.listEndereco.length <= 6)){
-            this.showEndereco = true;
-            params.endereco ? this.filterEndereco = params.endereco : this.filterEndereco.push(this.retImoveis.listEndereco[0]._id);
+      if(process.client) {
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
+          this.retImoveis= ret.data;
+          if((this.retImoveis.listTipoImovel && this.retImoveis.listTipoImovel.length == 1) || params.tipo_imovel) {
+            this.showtipo = true;
+            params.tipo_imovel ? this.filterTipo = params.tipo_imovel : this.filterTipo.push(this.retImoveis.listTipoImovel[0]._id);
           }
-        }
-        this.showquarto = (this.retImoveis.minimoQuartos && this.retImoveis.minimoQuartos >=1);
-        this.showvaga = (this.retImoveis.minimoVagas && this.retImoveis.minimoVagas >=1);
-        this.showbanheiro = (this.retImoveis.minimoBanheiros && this.retImoveis.minimoBanheiros >=1);
-        this.showPreco = (this.minimoPreco || this.maximoPreco);
-        this.showArea = (this.minimoArea || this.maximoArea);
-        
-        this.totalRegistrosEncontrados = ret.data.qtd_total_registros
-      }).catch(err=>{
-        console.log('ERRO -> ',err)
-      }).finally(() => this.carregando = false)
+          if((this.retImoveis.listaBairros && this.retImoveis.listaBairros.length == 1) || params.bairro) {
+            this.showbairro = true;
+            params.bairro ? this.filterBairro = params.bairro : this.filterBairro.push(this.retImoveis.listaBairros[0]._id);
+          }
+          if((this.retImoveis.listFinalidade && this.retImoveis.listFinalidade.length == 1) || params.finalidade) {
+            this.showfinalidade = true;
+            params.finalidade ? this.filterFinalidade = params.finalidade : this.filterFinalidade.push(this.retImoveis.listFinalidade[0]._id);
+          }
+          if((this.retImoveis.listEndereco && this.retImoveis.listEndereco.length == 1) || params.endereco) {
+            if(this.buscaDireta || (this.retImoveis.listEndereco.length <= 6)){
+              this.showEndereco = true;
+              params.endereco ? this.filterEndereco = params.endereco : this.filterEndereco.push(this.retImoveis.listEndereco[0]._id);
+            }
+          }
+          this.showquarto = (this.retImoveis.minimoQuartos && this.retImoveis.minimoQuartos >=1);
+          this.showvaga = (this.retImoveis.minimoVagas && this.retImoveis.minimoVagas >=1);
+          this.showbanheiro = (this.retImoveis.minimoBanheiros && this.retImoveis.minimoBanheiros >=1);
+          this.showPreco = (this.minimoPreco || this.maximoPreco);
+          this.showArea = (this.minimoArea || this.maximoArea);
+          
+          this.totalRegistrosEncontrados = ret.data.qtd_total_registros
+        }).catch(err=>{
+          console.log('ERRO -> ',err)
+        }).finally(() => this.carregando = false)
+      }
     },
     clickPagina(page){
       this.paramsPagina.page = page

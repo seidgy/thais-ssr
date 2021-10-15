@@ -72,7 +72,7 @@
       <img src="/images/experiencia.svg" alt="É mais fácil contar com a experiência" class="about__image">
       <div v-if="this.windowWidth > 768" class="doubts__list">
         <div class="doubt-box">
-          <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
+          <img src="~assets/images/logo_rede.png" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
         </div>
         
         <div class="doubt-box">

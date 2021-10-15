@@ -486,7 +486,7 @@ export default {
       if(type == 'enderecoImovel') {
         parameters.enderecoImovel = [newValue];
       }
-      let routeData = this.$router.resolve({ name: 'imoveis', query: parameters });
+      let routeData = this.$router.resolve({ to: '/imoveis', query: parameters });
       window.open(routeData.href, '_blank');
     }
   },
