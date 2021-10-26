@@ -44,7 +44,7 @@ export default {
     { src: '~/plugins/recaptcha.js', ssr: false },
     { src: '~/plugins/services.plugin.js', ssr: false },
     { src: '~/plugins/modal.client.js', ssr: false },
-    //{ src: '~/plugins/bootstrap.js', ssr: false }
+    { src: '~/plugins/mask.client.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

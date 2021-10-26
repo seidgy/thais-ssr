@@ -55,7 +55,7 @@
             <button class="button button--borderless button--gray button--paddingless cancel-button" @click="showFilters=false">Cancelar</button>
           </div>
           <div class="col-md-3 filtro-imoveis">
-            <form action="" id="form-filtros" class="form-filtros">
+            <form id="form-filtros" class="form-filtros">
               <!--<input type="hidden" name="textoBusca" v-model="textoBusca">-->
               <input type="hidden" name="finalidadeImovel" v-model="finalidadeImovel">
               <div class="search-form__options">
@@ -167,13 +167,13 @@
                 <div class="filtro-list" :class="{'filtro-list--open':showPreco}">
                   <div class="row">
                     <div class="col-md-12" :class="{'form-default__filled': minimoPreco}">
-                      <input type="number" min="0" :step="tipo == 'aluguel'?'50':'50000'" name="minimoPreco" id="valMinimo" class="form-default__input" v-model="minimoPreco">
+                      <money name="minimoPreco" id="valMinimo" class="form-default__input" v-model="minimoPreco"></money>
                       <label for="valMinimo" class="form-default__label">Valor mínimo</label>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12" :class="{'form-default__filled': maximoPreco}">
-                      <input type="number" :step="tipo == 'aluguel'?'50':'50000'" :min="minimoPreco" name="maximoPreco" id="valMaximo" class="form-default__input" v-model="maximoPreco">
+                    <div class="col-md-12" :class="{'form-default__filled': maximoPreco}"> 
+                      <money :min="minimoPreco" name="maximoPreco" id="valMaximo" class="form-default__input" v-model="maximoPreco"></money>
                       <label for="valMaximo" class="form-default__label">Valor máximo</label>
                     </div>
                   </div>
@@ -200,9 +200,10 @@
               </div>
               <input 
                 id="submit-button"
-                type="submit" 
+                type="button" 
                 value="Aplicar filtros" 
                 class="button button--primary button--full"
+                @click.prevent="refinaBusca()"
               >
             </form>
           </div>
@@ -285,8 +286,8 @@ export default {
       showvaga: false,
       showarea: false,
       showPreco: false,
-      minimoPreco: null,
-      maximoPreco: null,
+      minimoPreco: 0,
+      maximoPreco: 0,
       showArea: false,
       minimoArea: null,
       maximoArea: null,
@@ -364,6 +365,7 @@ export default {
           if(this.minimoArea) paramsConsulta.minimoArea = parseInt(this.minimoArea,10);
           if(this.maximoArea) paramsConsulta.maximoArea = parseInt(this.maximoArea,10);
           this.buscaDireta = true;
+          console.log(paramsConsulta)
           this.getImoveisFiltro(paramsConsulta);
         }
       }
@@ -404,6 +406,13 @@ export default {
         }).finally(() => this.carregando = false)
       }
     },
+    refinaBusca() {
+      this.carregando = true;
+      let paramsConsulta = this.mountParams();
+      this.buscaDireta = true;
+      console.log('PARAMS', paramsConsulta)
+      this.getImoveisFiltro(paramsConsulta);
+    },
     clickPagina(page){
       this.paramsPagina.page = page
       this.getImoveis()
@@ -427,6 +436,10 @@ export default {
       },50)
     },
     mountParameters() {
+        this.paramsPagina.termoBusca = {
+          'ofertas.tipo_oferta': this.tipo == 'aluguel'?1:2,
+          'finalidade': this.finalidadeImovel?this.finalidadeImovel:null
+        };
       let finalidadeImovel = '';
       let tipo = [];
       let tipoImovel = [];
@@ -455,8 +468,8 @@ export default {
       minimoQuartos = document.querySelector('[name="minimoQuartos"]:checked')?document.querySelector('[name="minimoQuartos"]:checked').value:'';
       minimoVagas = document.querySelector('[name="minimoVagas"]:checked')?document.querySelector('[name="minimoVagas"]:checked').value:'';
       minimoBanheiros = document.querySelector('[name="minimoBanheiros"]:checked')?document.querySelector('[name="minimoBanheiros"]:checked').value:'';
-      minimoPreco = document.querySelector('[name="minimoPreco"]').value;
-      maximoPreco = document.querySelector('[name="maximoPreco"]').value;
+      minimoPreco = this.minimoPreco;
+      maximoPreco = this.maximoPreco;
       minimoArea = document.querySelector('[name="minimoArea"]').value;
       maximoArea = document.querySelector('[name="maximoArea"]').value;
       var params = {
@@ -473,6 +486,61 @@ export default {
         'minimoArea': minimoArea,
         'maximoArea': maximoArea,
       }
+      return params;
+    },
+    mountParams() {
+      let finalidadeImovel = '';
+      let tipo = [];
+      let tipoImovel = [];
+      let bairroImovel = [];
+      let enderecoImovel = [];
+      let minimoQuartos = '';
+      let minimoVagas = '';
+      let minimoBanheiros = '';
+      let minimoPreco = '';
+      let maximoPreco = '';
+      let minimoArea = '';
+      let maximoArea = '';
+      finalidadeImovel = document.querySelector('[name="finalidadeImovel"]').value;
+      document.querySelectorAll('[name="tipo"]:checked').forEach((i) => {
+        tipo.push(i.value);
+      });
+      document.querySelectorAll('[name="tipoImovel"]:checked').forEach((i) => {
+        tipoImovel.push(i.value);
+      });
+      document.querySelectorAll('[name="bairroImovel"]:checked').forEach((i) => {
+        bairroImovel.push(i.value);
+      });
+      document.querySelectorAll('[name="enderecoImovel"]:checked').forEach((i) => {
+        enderecoImovel.push(i.value);
+      });
+      minimoQuartos = document.querySelector('[name="minimoQuartos"]:checked')?document.querySelector('[name="minimoQuartos"]:checked').value:'';
+      minimoVagas = document.querySelector('[name="minimoVagas"]:checked')?document.querySelector('[name="minimoVagas"]:checked').value:'';
+      minimoBanheiros = document.querySelector('[name="minimoBanheiros"]:checked')?document.querySelector('[name="minimoBanheiros"]:checked').value:'';
+      minimoPreco = this.minimoPreco;
+      maximoPreco = this.maximoPreco;
+      minimoArea = document.querySelector('[name="minimoArea"]').value;
+      maximoArea = document.querySelector('[name="maximoArea"]').value;
+      let params = {
+        limit: this.paramsPagina.limit,
+        page: this.paramsPagina.page,
+        sort: this.paramsPagina.sort,
+        termoBusca: {
+          'ofertas.tipo_oferta': tipo == 'aluguel'?1:2,
+          'finalidade': [finalidadeImovel]
+        }
+      };
+      if(tipoImovel) params.tipo_imovel = tipoImovel;
+      if(bairroImovel && bairroImovel.length > 0) params.bairro = bairroImovel;
+      if(finalidadeImovel) params.finalidade = [finalidadeImovel];
+      if(enderecoImovel && enderecoImovel.length > 0) params.endereco = enderecoImovel;
+      if(minimoQuartos) params.minimoQuartos = parseInt(minimoQuartos,10);
+      if(minimoBanheiros) params.minimoBanheiros = parseInt(minimoBanheiros,10);
+      if(minimoVagas) params.minimoVagas = parseInt(minimoVagas,10);
+      if(minimoPreco && parseInt(minimoPreco,10) > 0) params.minimoPreco = parseInt(minimoPreco,10);
+      if(maximoPreco && parseInt(maximoPreco,10) > 0) params.maximoPreco = parseInt(maximoPreco,10);
+      if(minimoArea) params.minimoArea = parseInt(minimoArea,10);
+      if(maximoArea) params.maximoArea = parseInt(maximoArea,10);
       return params;
     },
     newTabSearch(type, newValue) {
