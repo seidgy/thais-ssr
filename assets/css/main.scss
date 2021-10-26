@@ -257,7 +257,7 @@ div.row {
     text-align: center;
     padding: 6px 16px;
     font-size: 0.75rem;
-    line-height: 0.9675rem;
+    line-height: 1.62em;
     font-weight: 600;
     text-transform: uppercase;
     color: $font-color-dark;
@@ -419,7 +419,7 @@ div.row {
         left: 13px;
         font-weight: 600;
         font-size: 0.5625rem;
-        line-height: 1rrem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         text-transform: uppercase;
         color: #FFF;
@@ -468,7 +468,7 @@ div.row {
     .imovel__transacao {
         font-weight: 600;
         font-size: 0.5625rem;
-        line-height: 0.6875rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         text-transform: uppercase;
         color: #FFF;
@@ -478,7 +478,7 @@ div.row {
     .imovel__valor {
         font-weight: 700;
         font-size: 1.4375rem;
-        line-height: 1.75rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         color: #FFF;
         margin: 0;
@@ -488,7 +488,7 @@ div.row {
     .imovel__periodo {
         font-weight: 500;
         font-size: 0.75rem;
-        line-height: 1rem;
+        line-height: 1.62em;
         letter-spacing: 0.030em;
         color: #fff;
         margin-left: 5px;
@@ -503,7 +503,7 @@ div.row {
     .imovel__title {
         font-weight: 400;
         font-size: 0.875rem;
-        line-height: 1.1875rem;
+        line-height: 1.62em;
         color: $font-color;
         margin-bottom: 9px;
         min-height: 80px;
@@ -522,7 +522,7 @@ div.row {
         color: $font-color;
         width: 110px;
         font-size: 0.625rem;
-        line-height: 0.8125rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         font-weight: 600;
         text-transform: uppercase;
@@ -534,7 +534,7 @@ div.row {
         color: $sec-font-color;
         width: 110px;
         font-size: 0.625rem;
-        line-height: 0.8125rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         font-weight: 600;
         text-transform: uppercase;
@@ -553,15 +553,15 @@ div.row {
     .imovel__default-subtitle {
         text-transform: uppercase;
         font-size: 0.75rem;
-        line-height: 1.25rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         font-weight: 600;
         color: $sec-font-color;
     }
 
     .imovel__default-text {
-        font-size: 1.15rem;
-        line-height: 1.8em;
+        font-size: 1rem;
+        line-height: 1.62em;
         letter-spacing: 0.01em;
         font-weight: 400;
         color: $font-color;
@@ -629,7 +629,7 @@ div.row {
         display: block;
         text-transform: uppercase;
         font-size: 0.625rem;
-        line-height: 1.3rem;
+        line-height: 1.62em;
         font-weight: 600;
         color: $main-color;
         text-decoration: underline;
@@ -643,8 +643,8 @@ div.row {
     .bairro__text,
     .bairro__text * {
         margin-bottom: 20px;
-        font-size: 1.25rem;
-        line-height: 1.6rem;
+        font-size: 1rem;
+        line-height: 1.62em;
         color: #FFF;
         strong {
             font-weight: 600;
@@ -702,7 +702,7 @@ div.row {
         text-transform: uppercase;
         font-weight: 600;
         font-size:  0.4375rem;
-        line-height: 0.5625rem;
+        line-height: 1.62em;
         margin: 6px 0 3px;
         color: #CCC;
     }
@@ -723,14 +723,14 @@ div.row {
 
         .numbers__text {
             font-size:  0.75rem;
-            line-height: 1.25rem;
+            line-height: 1.62em;
             letter-spacing: 0.080em;
         }
 
         .numbers__number {
             font-weight: 600;
-            font-size: 1.875rem;
-            line-height: 1.133rem;
+            font-size: 1.4rem;
+            line-height: 1.62em;
         }
     }
 
@@ -756,8 +756,8 @@ div.row {
 
     .ticket-info__title {
         font-weight: 800;
-        font-size: 1.45rem;
-        line-height: 1.55rem;
+        font-size: 1.3rem;
+        line-height: 1.62em;
         margin-left: 20px;
         color: $font-color-dark;
     }
@@ -777,7 +777,7 @@ div.row {
     .info-box__label {
         text-transform: uppercase;
         font-size: 0.75rem;
-        line-height: 1.25rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         font-weight: 600;
     }
@@ -822,7 +822,7 @@ div.row {
         color: #FFF;
         text-align: center;
         font-size: 1.25rem;
-        line-height: 1.6rem;
+        line-height: 1.62em;
         letter-spacing: 0.05em;
         font-weight: 800;
     }
@@ -831,7 +831,7 @@ div.row {
         width: 100%;
         text-align: center;
         font-size: 0.75rem;
-        line-height: 1.25rem;
+        line-height: 1.62em;
         letter-spacing: 0.080em;
         font-weight: 400;
     }
@@ -1203,7 +1203,7 @@ div.row {
   
   .title__title {
     font-size: 1.875rem;
-    line-height: 2.125rem;
+    line-height: 1.62em;
     font-weight: 600;
     @include sm {
         font-size: 1.125rem;
@@ -1218,7 +1218,7 @@ div.row {
     font-weight: 400;
     @include sm {
         font-size: 1rem;
-        line-height: 1.125rem;
+        line-height: 1.62em;
     }
   }
   
@@ -1230,7 +1230,7 @@ div.row {
       font-size: 0.6875em;
       color: #9F9F9F;
       letter-spacing: 0.140em;
-      line-height: 0.875em;
+      line-height: 1.62em;
       text-transform: uppercase;
       font-weight: 600;
     }
@@ -1380,7 +1380,7 @@ div.row {
     width: 100%;
     margin-bottom: 30px;
     font-size: 1.25rem;
-    line-height: 2.125rem;
+    line-height: 1.62em;
     margin-top: 30px;
 }
 

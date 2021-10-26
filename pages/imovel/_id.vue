@@ -572,7 +572,7 @@ export default {
 
 .main-title {
   color: #FFF;
-  font-size: 1.875em;
+  font-size: 1.5em;
   line-height: 1.3em;
   font-weight: 400;
   margin: 0;
