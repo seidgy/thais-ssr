@@ -3,6 +3,8 @@
     <div class="search-box">
       <span class="search-box__bg"></span>
       <span class="shape"></span>
+    </div>
+    <div class="search-form-box">
       <div class="search-form">
         <div class="search-form__title-container">  
           <h1 class="search-form__title" id="search-title-aluguel">Aluguel simples, com quem tem experiência</h1>
@@ -509,7 +511,7 @@ export default {
     left: 0;
     width: 100%;
     text-align: center;
-    z-index: 2;
+    z-index: 5;
     @include sm {
       top: 12vh;
     }
