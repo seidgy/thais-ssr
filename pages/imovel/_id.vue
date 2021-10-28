@@ -206,7 +206,7 @@
     </div>-->
     </div>
     <!-- MODAL ALERT -->
-    <modal tabindex="-1" adaptive="true" role="dialog" :id="'mdl-comparativo-'+imovelData.codigo_imovel" :name="'mdl-comparativo-'+imovelData.codigo_imovel">
+    <modal tabindex="-1" :adaptive="true" role="dialog" :id="'mdl-comparativo-'+imovelData.codigo_imovel" :name="'mdl-comparativo-'+imovelData.codigo_imovel">
         <div class="myModal">
             <div class="modal-content">
             <div class="modal-header">
@@ -226,7 +226,7 @@
             </div>
         </div>
     </modal>
-    <modal tabindex="-1" role="dialog" name="modal-galeria" adaptive="true" width="80%" height="80%">
+    <modal tabindex="-1" role="dialog" name="modal-galeria" :adaptive="true" width="80%" height="80%">
       <client-only>
         <div class="close-me">
           <a href="#" @click.prevent="$modal.hide('modal-galeria')">

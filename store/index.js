@@ -1,7 +1,8 @@
 export const state = () => ({
   favoritos: process.browser && localStorage.getItem('favoritos')?JSON.parse(localStorage.getItem('favoritos')):[],
   compare: process.browser && localStorage.getItem('compare')?JSON.parse(localStorage.getItem('compare')):[],
-  windowWidth: 0
+  windowWidth: 0,
+  cookieCompliance: false
 })
 
 export const mutations = {
@@ -9,6 +10,7 @@ export const mutations = {
     state.favoritos = localStorage.getItem('favoritos')?JSON.parse(localStorage.getItem('favoritos')):[]
     state.compare = localStorage.getItem('compare')?JSON.parse(localStorage.getItem('compare')):[]
     state.windowWidth = 0
+    state.cookieCompliance = localStorage.getItem('compDate') && localStorage.getItem('compDate') == new Date().toISOString().slice(0,10).replace(/-/g,"")?true:false
   },
   toggleFav: (state,codigo_imovel) => {
     if(state.favoritos.find(aux => aux==codigo_imovel)){
@@ -34,5 +36,9 @@ export const mutations = {
   },
   changeWindowWidth: (state, payload) => {
     state.windowWidth = payload
+  },
+  setCompliance: (state) => {
+    localStorage.setItem("compDate", new Date().toISOString().slice(0,10).replace(/-/g,""))
+    state.cookieCompliance = true;
   }
 }

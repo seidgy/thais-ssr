@@ -1535,3 +1535,80 @@ div.grecaptcha-badge {
     display: flex;
     height: 100%;
 }
+
+
+/*DEFAULT TEXT PAGES*/
+.default-main {
+    padding: 200px 0 150px;
+    b {
+        font-weight: 600;
+    }
+}
+
+.padded {
+    padding-left: 30px;
+}
+
+.default-title {
+    color: $main-color;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.default-subtitle {
+    //text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+    &:not(:first-child) {
+        padding-top: 15px;
+    }
+}
+
+.default-text, .default-list__item {
+    font-size: 1rem;
+    line-height: 1.62em;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.default-list {
+    padding-left: 30px;
+}
+
+    .default-list__item {
+        list-style: none;
+        position: relative;
+        span {
+            color: $main-color;
+            font-weight: 500;
+        }
+        &:before {
+            content: "\2022"; 
+            color: $main-color;
+            font-weight: 700;
+            width: 1em;
+            margin: 0 7.5px;
+        }
+    }
+
+.default-link {
+    color: $main-color;
+    font-weight: 600;
+    &:hover, &:visited, &:active {
+        color: $main-color;
+        text-decoration: underline;
+    }
+}
+
+.default-reference {
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-align: right;
+}
+
+#modal-cookies {
+    .vm--overlay {
+        opacity: 0;
+    }
+}
