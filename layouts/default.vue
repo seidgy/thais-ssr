@@ -49,6 +49,8 @@ export default {
     });
     if(!this.cookieCompliance){
       this.$modal.show('modal-cookies');
+    } else{
+      this.$modal.hide('modal-cookies');
     }
   },
   beforeDestroy() { 
