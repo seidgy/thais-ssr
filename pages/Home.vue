@@ -4,7 +4,7 @@
       <span class="search-box__bg"></span>
       <span class="shape"></span>
       <div class="search-form">
-        <div class="search-form__title-container">  
+        <div class="search-form__title-container">
           <h1 class="search-form__title" id="search-title-aluguel">Aluguel simples, com quem tem experiência</h1>
           <h1 class="search-form__title search-form__title--hidden" id="search-title-compra">Compre com segurança e comodidade</h1>
         </div>
@@ -40,7 +40,7 @@
       </div>
     </div>
     <button type="button" class="cta-business" @click="downToBusiness()">
-      <p class="cta-business__text">Para o seu negócio</p> 
+      <p class="cta-business__text">Para o seu negócio</p>
     </button>
     <section class="business" id="business">
       <img src="/images/marmore.png" alt="Fundo mármore" class="business__marble">
@@ -74,17 +74,17 @@
         <div class="doubt-box">
           <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
         </div>
-        
+
         <div class="doubt-box">
           <img src="/images/mais40.svg" alt="Ícone 40 anos" class="doubt-box__icon">
           <p class="doubt-box__text">A união entre experiência e modernidade</p>
         </div>
-        
+
         <div class="doubt-box">
           <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
           <p class="doubt-box__text">Respeito pelo o que você procura</p>
         </div>
-        
+
         <div class="doubt-box">
           <img src="/images/equipe.svg" alt="Ícone equipe" class="doubt-box__icon">
           <p class="doubt-box__text">Uma equipe que oferece o seu melhor</p>
@@ -402,7 +402,7 @@ export default {
         str = str.replace(/[ÈÉÊË]/,"E");
         str = str.replace(/[Ç]/,"C");
         str = str.replace(/[ç]/,"c");
-        return str.replace(/[^a-z0-9]/gi,''); 
+        return str.replace(/[^a-z0-9]/gi,'');
     },
     getBairrosList() {
       let input = document.querySelector('.search-bar__input').querySelector('input');
@@ -623,8 +623,8 @@ export default {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    transition: background-color 0.3s ease-in-out, 
-                border-color 0.3s ease-in-out, 
+    transition: background-color 0.3s ease-in-out,
+                border-color 0.3s ease-in-out,
                 opacity 0.5s ease-out 0.7s;
     opacity: 0;
     position: relative;
@@ -801,7 +801,7 @@ export default {
 
     .doubt-box__icon {
       height: 50px;
-      width: auto;  
+      width: auto;
     }
 
       .doubt-box__icon--big{
@@ -835,7 +835,7 @@ export default {
       margin: 0 16px 0 0;
     }
 
-    .doubt-cta__arrow-right {  
+    .doubt-cta__arrow-right {
       display: block;
       height: 1px;
       position: relative;
@@ -855,7 +855,7 @@ export default {
         top: 0;
         right: 0;
         transition: transform 0.2s ease-out, width 0.2s ease-out 0.1s;
-        
+
       }
 
       .doubt-cta__arrow-right:before{
@@ -871,7 +871,7 @@ export default {
       .doubt-cta:hover,
       .doubt-cta:focus{
         .doubt-cta__arrow-right {
-          width: 0;  
+          width: 0;
         }
           .doubt-cta__arrow-right:before,
           .doubt-cta__arrow-right:after {
@@ -880,7 +880,7 @@ export default {
           }
       }
 
-    .doubt-cta__arrow-left {  
+    .doubt-cta__arrow-left {
       display: block;
       height: 1px;
       position: relative;
@@ -901,7 +901,7 @@ export default {
         top: 0;
         right: 0;
         transition: transform 0.2s ease-out 0.7s, width 0.2s ease-out 0.8s;
-        
+
       }
 
       .doubt-cta__arrow-left:before,
@@ -920,7 +920,7 @@ export default {
       .doubt-cta:hover,
       .doubt-cta:focus{
         .doubt-cta__arrow-left {
-          width: 60px;  
+          width: 60px;
           margin-right: 16px;
         }
           .doubt-cta__arrow-left:before,
@@ -936,7 +936,7 @@ export default {
             transform: rotate(-40deg);
           }
       }
-  
+
   .business {
     display: flex;
     flex-direction: column;
@@ -988,7 +988,7 @@ export default {
     position: relative;
     margin-bottom: 60px;
   }
-  
+
     .business-thais__title {
       position: absolute;
       top: 25px;
@@ -1029,7 +1029,7 @@ export default {
             margin-bottom: 10px;
           }
       }
-  
+
     .business-thais__image {
       width: 100%;
     }
@@ -1045,7 +1045,7 @@ export default {
       }
     }
 
-    
+
   .business-button {
     display: flex;
     flex-flow: row nowrap;
@@ -1066,7 +1066,7 @@ export default {
       margin: 0 16px 0 0;
     }
 
-    .business-button__arrow {  
+    .business-button__arrow {
       display: block;
       height: 1px;
       position: relative;
@@ -1124,7 +1124,7 @@ export default {
 
         .business-button__arrow:after{
           transform: rotate(-40deg);
-        } 
+        }
       }
 
       .about {

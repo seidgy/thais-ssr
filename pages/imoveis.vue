@@ -14,6 +14,16 @@
         <div class="relative">
           <h2 class="imoveis__title not-mobile">{{ totalRegistrosEncontrados }} imóveis encontrados</h2>
           <div class="visualizador not-mobile">
+            <div class="select-order">
+              <select v-model="selecionar" @change="ordenar">
+                <option value="mais_relevante">Mais relevante</option>
+                <option value="maior_valor">Maior valor</option>
+                <option value="menor_valor">Menor valor</option>
+                <option value="maior_tamanho">Maior tamanho</option>
+                <option value="menor_tamanho">Menor tamanho</option>
+              </select>
+              <img src="/images/arrow-up.svg">
+            </div>
             <div class="opcao-visualizador">
               <input type="radio" class="opcao-visualizador__check" id="vis-tabela" value="tabela" v-model="tipoVisualizacao" />
               <label for="vis-tabela" class="opcao-visualizador__icon">
@@ -43,8 +53,143 @@
             </div>
           </div>
         </div>
-        <div v-if="retImoveis.imoveis.length <= 0">
-            <h4>Infelizmente não encontramos nenhum imóvel a partir dos filtros informados.</h4>
+        <div v-if="retImoveis.imoveis.length <= 0" class="justify-content-center align-items-center">
+            <div class="container justify-content-between align-items-center" style="display:flex;height:150px;border: 1px solid #707070;border-radius: 14px;max-width:730px;padding:0 100px;margin-bottom: 100px">
+              <h1 style="font-size:41px;color:#E4262B;width:142px">Ops! :(</h1>
+              <h1 style="font-size:14px;color:#383838;width:252px">Não encontramos nenhum imóvel com os termos que você usou.</h1>
+            </div>
+
+            <h1 style="text-align: center;font-size:20px">Que tal começar uma nova busca usando os filtros abaixo?</h1>
+
+            <div style="display: flex;min-height:400px;margin-top:20px">
+              <div style="margin-right: 10px; width:255px">
+                <input type="hidden" name="finalidadeImovel" v-model="finalidadeImovel">
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showtipo}" @click.prevent="showtipo=!showtipo">
+                    <span>Tipo de imóvel</span>
+                  </button>
+                  <simplebar class="filtro-list" :class="{'filtro-list--open':showtipo}">
+
+                    <div class="filtro-list__item" v-for="item in listTipos" v-bind:key="item">
+                      <div class="search-form__option" >
+                        <input type="checkbox" :id="replaceCharacters(item)" name="tipoImovel" :value="item" class="search-form__radio" v-model="filterTipo">
+                        <label :for="replaceCharacters(item)" class="search-form__custom-radio search-form__custom-radio--checkbox" tabindex="0"></label>
+                        <label :for="replaceCharacters(item)" class="search-form__label search-form__label--lower">{{item}}</label>
+                      </div>
+
+                    </div>
+                  </simplebar>
+                </div>
+              </div>
+              <div style="margin-right: 10px; width:255px">
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showbairro}" @click.prevent="showbairro=!showbairro">
+                    <span>Bairro</span>
+                  </button>
+                  <simplebar class="filtro-list" :class="{'filtro-list--open':showbairro}">
+
+                    <div class="filtro-list__item" v-for="item in allBairros" v-bind:key="item.bairro">
+                      <div class="search-form__option" >
+                        <input type="checkbox" :id="replaceCharacters(item.bairro)" name="bairroImovel" :value="item.bairro" class="search-form__radio" v-model="filterBairro">
+                        <label :for="replaceCharacters(item.bairro)" class="search-form__custom-radio search-form__custom-radio--checkbox" tabindex="0"></label>
+                        <label :for="replaceCharacters(item.bairro)" class="search-form__label search-form__label--lower">{{item.bairro}}</label>
+                      </div>
+
+                    </div>
+                  </simplebar>
+                </div>
+              </div>
+              <div style="margin-right: 10px; width:255px">
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showquarto}" @click.prevent="showquarto=!showquarto">
+                    <span>Quartos</span>
+                  </button>
+                  <simplebar class="filtro-list" :class="{'filtro-list--open':showquarto}">
+                    <div class="filtro-list__item" v-for="item in 5" v-bind:key="item">
+                      <div class="search-form__option" >
+                        <input type="radio" :id="'quarto-'+item" name="minimoQuartos" :value="item" v-model="retImoveis.minimoQuartos" class="search-form__radio">
+                        <label :for="'quarto-'+item" class="search-form__custom-radio search-form__custom-radio" tabindex="0"></label>
+                        <label :for="'quarto-'+item" class="search-form__label search-form__label--lower">{{item}}{{ item>=5?'+':'' }}</label>
+                      </div>
+                    </div>
+                  </simplebar>
+                </div>
+              </div>
+              <div style="margin-left: 10px; width:255px">
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showbanheiro}" @click.prevent="showbanheiro=!showbanheiro">
+                    <span>Banheiros</span>
+                  </button>
+                  <simplebar class="filtro-list" :class="{'filtro-list--open':showbanheiro}">
+                    <div class="filtro-list__item" v-for="item in 5" v-bind:key="item">
+                      <div class="search-form__option" >
+                        <input type="radio" :id="'banheiro-'+item" name="minimoBanheiros" :value="item" v-model="retImoveis.minimoBanheiros" class="search-form__radio">
+                        <label :for="'banheiro-'+item" class="search-form__custom-radio search-form__custom-radio" tabindex="0"></label>
+                        <label :for="'banheiro-'+item" class="search-form__label search-form__label--lower">{{item}}{{ item>=5?'+':'' }}</label>
+                      </div>
+                    </div>
+                  </simplebar>
+                </div>
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showvaga}" @click.prevent="showvaga=!showvaga">
+                    <span>Vagas</span>
+                  </button>
+                  <simplebar class="filtro-list" :class="{'filtro-list--open':showvaga}">
+                    <div class="filtro-list__item" v-for="item in 5" v-bind:key="item">
+                      <div class="search-form__option" >
+                        <input type="radio" :id="'vaga-'+item" name="minimoVagas" :value="item" v-model="retImoveis.minimoVagas" class="search-form__radio">
+                        <label :for="'vaga-'+item" class="search-form__custom-radio search-form__custom-radio" tabindex="0"></label>
+                        <label :for="'vaga-'+item" class="search-form__label search-form__label--lower">{{item}}{{ item>=5?'+':'' }}</label>
+                      </div>
+                    </div>
+                  </simplebar>
+                </div>
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showArea}" @click.prevent="showArea=!showArea">
+                    <span>Área</span>
+                  </button>
+                  <div class="filtro-list" :class="{'filtro-list--open':showArea}">
+                    <div class="row">
+                      <div class="col-md-12" :class="{'form-default__filled': minimoArea}">
+                        <input type="number" min="0" step="10" name="minimoArea" id="valMinimo" class="form-default__input" v-model="minimoArea">
+                        <label for="valMinimo" class="form-default__label">Área mínima</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12" :class="{'form-default__filled': maximoArea}">
+                        <input type="number" step="10" :min="minimoArea" name="maximoArea" id="valMaximo" class="form-default__input" v-model="maximoArea">
+                        <label for="valMaximo" class="form-default__label">Área máxima</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filtro-imoveis__group">
+                  <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showPreco}" @click.prevent="showPreco=!showPreco">
+                    <span>Faixa de preço</span>
+                  </button>
+                  <div class="filtro-list" :class="{'filtro-list--open':showPreco}">
+                    <div class="row">
+                      <div class="col-md-12" :class="{'form-default__filled': minimoPreco}">
+                        <money name="minimoPreco" id="valMinimo" class="form-default__input" v-model="minimoPreco"></money>
+                        <label for="valMinimo" class="form-default__label">Valor mínimo</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12" :class="{'form-default__filled': maximoPreco}">
+                        <money :min="minimoPreco" name="maximoPreco" id="valMaximo" class="form-default__input" v-model="maximoPreco"></money>
+                        <label for="valMaximo" class="form-default__label">Valor máximo</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex" class="justify-content-center align-items-center">
+              <button style="background: #E4262B;padding: 10px 20px;border: none;color: white; border-radius:20px;font-size:12px;font-weight: 600;letter-spacing: 2px" @click.prevent="refinaBusca()">RECOMEÇAR COM ESSES FILTROS</button>
+            </div>
+
+
         </div>
         <div class="row" id="filtros-container" :class="{'show-filters':showFilters}" v-else>
           <div class="toggle-filtros mobile-only">
@@ -53,6 +198,16 @@
               Filtros
             </button>
             <button class="button button--borderless button--gray button--paddingless cancel-button" @click="showFilters=false">Cancelar</button>
+            <div class="select-order">
+              <select v-model="selecionar" @change="ordenar">
+                <option value="mais_relevante">Mais relevante</option>
+                <option value="maior_valor">Maior valor</option>
+                <option value="menor_valor">Menor valor</option>
+                <option value="maior_tamanho">Maior tamanho</option>
+                <option value="menor_tamanho">Menor tamanho</option>
+              </select>
+              <img src="/images/arrow-up.svg">
+            </div>
           </div>
           <div class="col-md-3 filtro-imoveis">
             <form id="form-filtros" class="form-filtros">
@@ -172,7 +327,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12" :class="{'form-default__filled': maximoPreco}"> 
+                    <div class="col-md-12" :class="{'form-default__filled': maximoPreco}">
                       <money :min="minimoPreco" name="maximoPreco" id="valMaximo" class="form-default__input" v-model="maximoPreco"></money>
                       <label for="valMaximo" class="form-default__label">Valor máximo</label>
                     </div>
@@ -198,10 +353,10 @@
                   </div>
                 </div>
               </div>
-              <input 
+              <input
                 id="submit-button"
-                type="button" 
-                value="Aplicar filtros" 
+                type="button"
+                value="Aplicar filtros"
                 class="button button--primary button--full"
                 @click.prevent="refinaBusca()"
               >
@@ -219,7 +374,7 @@
           <div class="col-md-12">
             <Paginacao v-if="!carregando" :pagina="paramsPagina.page" :totalDeRegistros="retImoveis.qtd_total_registros" :itensPorPagina="paramsPagina.limit" :clickHandler='clickPagina'/>
           </div>
-          
+
         </div>
       </div>
 
@@ -240,8 +395,8 @@ export default {
   name: 'imoveis',
   watch: {
       $route: {
-          immediate: true,  
-          handler(to) {       
+          immediate: true,
+          handler(to) {
             this.textoBusca = to.query.textoBusca
             this.tipo = to.query.tipo
             if(to.query.tipoImovel) this.tipoImovel = Array.isArray(to.query.tipoImovel) ? to.query.tipoImovel : [to.query.tipoImovel];
@@ -257,7 +412,8 @@ export default {
             if(to.query.maximoArea) this.maximoArea = to.query.maximoArea
             if(to.query.page) this.paramsPagina.page = to.query.page
             if(to.query.limit) this.paramsPagina.limit = to.query.limit
-            
+            if(to.query.codigoImovel) this.codigoImovel = to.query.codigoImovel
+
             this.getImoveis()
           }
       },
@@ -270,6 +426,7 @@ export default {
   },
   data() {
     return {
+      selecionar: 'mais_relevante',
       carregando: true,
       showMap: false,
       termoBusca:null,
@@ -291,10 +448,212 @@ export default {
       showArea: false,
       minimoArea: null,
       maximoArea: null,
+      codigoImovel: null,
       filterBairro: [],
       filterFinalidade: [],
       filterTipo: [],
       filterEndereco: [],
+      allBairros: [
+          {
+              "bairro": "Águas Claras",
+              "bairros": [
+                  "Águas Claras",
+                  "Águas Claras Norte",
+                  "Águas Claras Sul",
+                  "Areal",
+                  "Norte",
+                  "Sul",
+                  "Setor Habitacional Arniqueiras"
+              ]
+          },
+          {
+              "bairro": "Ceilândia",
+              "bairros": [
+                  "Ceilândia",
+                  "Ceilândia Centro",
+                  "Ceilândia Norte",
+                  "Ceilândia Sul"
+              ]
+          },
+          {
+              "bairro": "Samambaia",
+              "bairros": [
+                  "Samambaia",
+                  "Samambaia Norte",
+                  "Samambaia Sul"
+              ]
+          },
+          {
+              "bairro": "Taguatinga",
+              "bairros": [
+                  "Taguatinga",
+                  "Taguatinga Norte",
+                  "Taguatinga Sul"
+              ]
+          },
+          {
+              "bairro": "Plano Piloto",
+              "bairros": [
+                  "Asa Norte",
+                  "Asa Sul"
+              ]
+          },
+          {
+              "bairro": "Asa Norte",
+              "bairros": [
+                  "Asa Norte"
+              ]
+          },
+          {
+              "bairro": "Asa Sul",
+              "bairros": [
+                  "Asa Sul"
+              ]
+          },
+          {
+              "bairro": "Planaltina",
+              "bairros": [
+                  "Planaltina"
+              ]
+          },
+          {
+              "bairro": "Recanto das Emas",
+              "bairros": [
+                  "Recanto das Emas"
+              ]
+          },
+          {
+              "bairro": "Guará",
+              "bairros": [
+                  "Guará",
+                  "Guará I",
+                  "Guará II",
+                  "Polo de Modas",
+                  "Zona Industrial",
+                  "Quadras Econômicas Lúcio Costa"
+              ]
+          },
+          {
+              "bairro": "Cruzeiro",
+              "bairros": [
+                  "Cruzeiro",
+                  "Cruzeiro Novo",
+                  "Cruzeiro Velho"
+              ]
+          },
+          {
+              "bairro": "Vicente Pires",
+              "bairros": [
+                  "Vicente Pires"
+              ]
+          },
+          {
+              "bairro": "Sudoeste",
+              "bairros": [
+                  "Sudoeste"
+              ]
+          },
+          {
+              "bairro": "Octogonal",
+              "bairros": [
+                  "Octogonal"
+              ]
+          },
+          {
+              "bairro": "Riacho Fundo",
+              "bairros": [
+                  "Riacho Fundo"
+              ]
+          },
+          {
+              "bairro": "Riacho Fundo II",
+              "bairros": [
+                  "Riacho Fundo II"
+              ]
+          },
+          {
+              "bairro": "Jardins Mangueiral",
+              "bairros": [
+                  "Jardins Mangueiral"
+              ]
+          },
+          {
+              "bairro": "Candangolândia",
+              "bairros": [
+                  "Candangolândia"
+              ]
+          },
+          {
+              "bairro": "Paranoá",
+              "bairros": [
+                  "Paranoá"
+              ]
+          },
+          {
+              "bairro": "Lago Norte",
+              "bairros": [
+                  "Lago Norte",
+                  "Setor de Habitações Individuais Norte"
+              ]
+          },
+          {
+              "bairro": "Lago Sul",
+              "bairros": [
+                  "Lago Sul",
+                  "Setor de Habitações Individuais Sul"
+              ]
+          },
+          {
+              "bairro": "Jardim Botânico",
+              "bairros": [
+                  "Jardim Botânico",
+                  "Setor Habitacional Jardim Botânico"
+              ]
+          },
+          {
+              "bairro": "Park Way",
+              "bairros": [
+                  "Park Way"
+              ]
+          },
+          {
+              "bairro": "Park Sul",
+              "bairros": [
+                  "Park Sul"
+              ]
+          },
+          {
+              "bairro": "Noroeste",
+              "bairros": [
+                  "Noroeste"
+              ]
+          },
+          {
+              "bairro": "Gama",
+              "bairros": [
+                  "Gama",
+                  "Setor Industrial",
+                  "Setor Leste",
+                  "Setor Oeste"
+              ]
+          },
+          {
+              "bairro": "Sobradinho",
+              "bairros": [
+                  "Sobradinho",
+                  "Sobradinho II",
+                  "Setor Hab. Contagem"
+              ]
+          }
+      ],
+      listTipos: [
+        'Apartamento',
+        'Apartamento Duplex',
+        'Casa',
+        'Cobertura',
+        'Flat',
+        'Kitnet'
+      ],
       paramsPagina: {
         limit: 12,
         page:1,
@@ -309,6 +668,9 @@ export default {
       if (process.client) {
         await this.$recaptchaLoaded()
         const token = await this.$recaptcha('login')
+
+
+
         if(this.textoBusca || this.textoBusca==='') {
           this.paramsPagina.textoBusca = this.textoBusca ? this.textoBusca: '';
         }
@@ -322,6 +684,13 @@ export default {
           sort: this.paramsPagina.sort,
           termoBusca: this.paramsPagina.termoBusca
         };
+
+        console.log('1111111', this.codigoImovel)
+
+        if (this.codigoImovel) {
+          paramsConsulta.codigo_imovel = this.codigoImovel
+        }
+
         this.carregando = true
         if(this.paramsPagina.textoBusca || this.paramsPagina.textoBusca==='') {
           this.$imoveis.buscar(token,this.paramsPagina).then(ret => {
@@ -331,19 +700,19 @@ export default {
               primeiraConsulta.listaBairros.forEach(element => {
                 paramsConsulta.bairro.push(element._id);
               });
-            } 
+            }
             if(primeiraConsulta.listTipoImovel && primeiraConsulta.listTipoImovel.length < 5) {
               paramsConsulta.tipo_imovel = [];
               primeiraConsulta.listTipoImovel.forEach(element => {
                 paramsConsulta.tipo_imovel.push(element._id);
               });
-            } 
+            }
             if(primeiraConsulta.listEndereco) {
               paramsConsulta.endereco = [];
               primeiraConsulta.listEndereco.forEach(element => {
                 paramsConsulta.endereco.push(element._id);
               });
-            } 
+            }
             if(primeiraConsulta.minimoQuartos >= 1) paramsConsulta.minimoQuartos = primeiraConsulta.minimoQuartos;
             if(primeiraConsulta.minimoBanheiros >= 1) paramsConsulta.minimoBanheiros = primeiraConsulta.minimoBanheiros;
             if(primeiraConsulta.minimoVagas >= 1) paramsConsulta.minimoVagas = primeiraConsulta.minimoVagas;
@@ -369,10 +738,13 @@ export default {
           this.getImoveisFiltro(paramsConsulta);
         }
       }
-    }, 
+    },
     async getImoveisFiltro(params) {
       if (process.client) {
         await this.$recaptchaLoaded()
+
+
+
         const token = await this.$recaptcha('login')
         this.$imoveis.getImoveisByFiltro(token,params).then(ret => {
           this.retImoveis= ret.data;
@@ -399,7 +771,7 @@ export default {
           this.showbanheiro = (this.retImoveis.minimoBanheiros && this.retImoveis.minimoBanheiros >=1);
           this.showPreco = (this.minimoPreco || this.maximoPreco);
           this.showArea = (this.minimoArea || this.maximoArea);
-          
+
           this.totalRegistrosEncontrados = ret.data.qtd_total_registros
         }).catch(err=>{
           console.log('ERRO -> ',err)
@@ -413,6 +785,33 @@ export default {
       console.log('PARAMS', paramsConsulta)
       this.getImoveisFiltro(paramsConsulta);
     },
+
+    ordenar(ev) {
+
+      this.carregando = true;
+      let paramsConsulta = this.mountParams();
+      this.buscaDireta = true;
+      console.log('PARAMS', paramsConsulta)
+      if (ev.target.value == 'maior_valor') {
+        paramsConsulta.sort = {'ofertas.preco_oferta': 'desc'}
+      }
+      if (ev.target.value == 'menor_valor') {
+        paramsConsulta.sort = {'ofertas.preco_oferta': 'asc'}
+      }
+
+      if (ev.target.value == 'maior_tamanho') {
+        paramsConsulta.sort = {'imovel.area_total': 'desc'}
+      }
+
+      if (ev.target.value == 'menor_tamanho') {
+        paramsConsulta.sort = {'ofertas.area_total': 'asc'}
+      }
+
+      if (ev.target.value == 'mais_relevante') {
+        paramsConsulta.sort = {'imovel.cidade': 'asc'}
+      }
+      this.getImoveisFiltro(paramsConsulta);
+    },
     clickPagina(page){
       this.paramsPagina.page = page
       this.getImoveis()
@@ -423,7 +822,7 @@ export default {
     },
     cleanFilter(tipo) {
       if(tipo == 'bairro'){
-        this.filterBairro = null; 
+        this.filterBairro = null;
       }
       if(tipo == 'bairro' || tipo == 'endereco') {
         this.filterEndereco = null;
@@ -575,6 +974,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../assets/css/_variables.scss';
+.select-order {
+  border:1px solid #142038;
+  border-radius: 17px;
+  padding: 5px 10px 5px 20px;
+  margin-bottom: 10px;
+}
+select {
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none; /* get rid of default appearance for IE8, 9 and 10*/
+}
 .parametros{
   border-bottom: 1px solid #CCC;
   padding-bottom: 30px;
@@ -624,7 +1038,7 @@ export default {
     }
 
     .search-form__custom-radio--checkbox {
-      border-radius: 2px; 
+      border-radius: 2px;
     }
 
     .search-form__custom-radio::after {
@@ -782,7 +1196,7 @@ export default {
       max-height: 2550px;
     }
   }
-  
+
 
 
 }
