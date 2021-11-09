@@ -54,8 +54,8 @@
             </button>
           </div>
         </form>
-        <a href="javascript:void(0)" style="margin-top: 10px;display: block" v-on:click="showInputCode()" v-if="!showCode">Encontre pelo código</a>
-        <a href="javascript:void(0)" style="margin-top: 10px;display: block" v-on:click="showInputCode()" v-if="showCode">Voltar aos filtros</a>
+        <a href="javascript:void(0)" style="margin-top: 10px;display: block" class="a-change-input" v-on:click="showInputCode()" v-if="!showCode">Encontre pelo código</a>
+        <a href="javascript:void(0)" style="margin-top: 10px;display: block" class="a-change-input" v-on:click="showInputCode()" v-if="showCode">Voltar aos filtros</a>
       </div>
     </div>
     <button type="button" class="cta-business" @click="downToBusiness()">
@@ -473,6 +473,16 @@ export default {
 </script>
 <style lang="scss" scoped>
   @import '../assets/css/_variables.scss';
+
+  .a-change-input {
+    cursor: pointer;
+
+  }
+
+  .a-change-input:hover {
+    text-decoration: underline;
+  }
+
   .search-box {
     perspective: 1px;
     overflow: hidden;
