@@ -4,7 +4,7 @@
       <loading/>
     </p>
     <div v-else>
-      <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556183186609&amp;text=Gostaria de receber mais informações sobre '+dadosImovel.imovel.titulo_imovel+' Código: '+dadosImovel.codigo_imovel+' URL: https://novo.thaisimobiliaria.com.br/imovel/'+this.imovelData.codigo_imovel" class="whatsapp">
+      <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556130312200&amp;text=Gostaria de receber mais informações sobre '+dadosImovel.imovel.titulo_imovel+' Código: '+dadosImovel.codigo_imovel+' URL: https://novo.thaisimobiliaria.com.br/imovel/'+this.imovelData.codigo_imovel" class="whatsapp">
         <img src="/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
         <span class="sr-only">Abre em uma nova aba</span>
       </a>
