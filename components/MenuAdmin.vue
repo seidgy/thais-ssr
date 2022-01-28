@@ -1,7 +1,7 @@
 <template>
     <ul class="menu-admin">
         <li class="menu-admin__item" v-for='item in menu' :key='item.name'>
-            <nuxt-link :to="{ name: item.name}" class="menu-admin__link" v-bind:class="{ active: currentRouteName == item.name }">{{ item.text }}</nuxt-link>
+            <nuxt-link :to="item.url" class="menu-admin__link" v-bind:class="{ active: currentRouteName == item.name }">{{ item.text }}</nuxt-link>
         </li>
     </ul>
 </template>
@@ -13,15 +13,18 @@ export default {
       menu: [
           {
               name: 'GerenciaIntegracao',
-              text: 'Gerenciar integração'
+              text: 'Gerenciar integração',
+              url: '/admin/GerenciaIntegracao'
           },
           {
               name: 'DeleteImovel',
-              text: 'Excluir de imóvel'
+              text: 'Excluir de imóvel',
+              url: '/admin/DeleteImovel'
           },
           {
               name: 'bairros',
-              text: 'Descrição dos Bairros'
+              text: 'Descrição dos Bairros',
+              url: '/admin/DadosBairros'
           },
       ]
     }

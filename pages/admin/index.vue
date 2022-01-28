@@ -39,28 +39,30 @@ export default {
   },
   methods: {
     async logar(){
-      this.loading = true
-      await this.$recaptchaLoaded()
-      const token = await this.$recaptcha('login')
-      this.$axios.post(process.env.VUE_APP_SERVER_URI+'/admin/login', {
-          params:{
-            user: this.login,
-            pass: this.password
-          },
-          headers:{
-              authorization: token
-          }
-      }).then(ret=>{
-        localStorage.setItem('token_admin',ret.data.token)
-        this.$router.push({ name: 'GerenciaIntegracao' })
-      }).catch(err=>{
-         this.$toast("Usuario ou senha incorretos. Verifique os dados informados e tente novamente!",{
-           timeout: 5000,
-           type: "error"
-         });
-      }).finally(()=>{
-        this.loading = false
-      })
+      if (process.client) {
+        this.loading = true
+        await this.$recaptchaLoaded()
+        const token = await this.$recaptcha('login')
+        this.$axios.post(process.env.VUE_APP_SERVER_URI+'/admin/login', {
+            params:{
+              user: this.login,
+              pass: this.password
+            },
+            headers:{
+                authorization: token
+            }
+        }).then(ret=>{
+          localStorage.setItem('token_admin',ret.data.token)
+          this.$router.push('/admin/GerenciaIntegracao')
+        }).catch(err=>{
+          this.$toast("Usuario ou senha incorretos. Verifique os dados informados e tente novamente!",{
+            timeout: 5000,
+            type: "error"
+          });
+        }).finally(()=>{
+          this.loading = false
+        })
+      }
     }
   },
 }
