@@ -1,7 +1,7 @@
 
 
 const type = "website";
-const url = "https://novo.thaisimobiliaria.com.br/";
+const url = "https://thaisimobiliaria.com.br/";
 const title = "Thaís Imobiliária";
 const description = "Thaís Imobiliária imovéis para venda e locação";
 const picture = "https://managing-images.kenlo.io/unsafe/600x400/filters:quality(100)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1s0xgxSbBGOsBT9+RO1zjks-ynciLnlXpdKzsuCVZKPvMZhGt-GI0v+QFtypVh7xY3icsFUfjv4HHembm5wv7fiGO536-3h5Ts7uLDcYCHkIkx36P+GAOhv-Q1TYF+Yx0oNrkjGhayU4mMNSFcqnywpkzMApYcDjsIkihq3TwLiXGSRtX2r1N9gXmfBv-V53TUCe28WXh7OsFfAttJ8h8PpwKpSRFyvwoXqw==.png";

@@ -7,7 +7,7 @@
       <ul class="main-nav">
         <li class="main-nav__li"><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="main-nav__link">Área do cliente</a></li>
         <li class="main-nav__li main-nav__li--logo"><a href="/" class="main-nav__link main-nav__link--logo"><img alt="Thaís Imobiliária" src="/images/logo-thais.svg" /></a></li>
-        <li class="main-nav__li"><a href="https://www.thaisimobiliaria.com.br/fale-conosco" class="main-nav__link">Fale conosco</a></li>
+        <li class="main-nav__li"><a href="https://b24-dgbqx2.bitrix24.site/ouvidoria/" class="main-nav__link">Fale conosco</a></li>
       </ul>
       <ul class="personal-nav">
         <li><a href="/compare" class="personal-nav__link personal-nav__link--margin">Compare</a></li>
@@ -27,7 +27,7 @@
         <ul class="mobile-nav__menu">
           <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" class="mobile-nav__link mobile-nav__link--outstanding" target="_blank">Anuncie seu imóvel</a></li>
           <li><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="mobile-nav__link">Área do cliente</a></li>
-          <li><a href="https://www.thaisimobiliaria.com.br/fale-conosco" class="mobile-nav__link">Fale conosco</a></li>
+          <li><a href="https://b24-dgbqx2.bitrix24.site/ouvidoria/" class="mobile-nav__link">Fale conosco</a></li>
         </ul>
       </nav>
       <div class="mobile-right">

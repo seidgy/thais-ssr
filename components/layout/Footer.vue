@@ -1,11 +1,11 @@
 <template>
   <section class="footer">
     <ul class="main-nav">
-      <li><a href="#" class="main-nav__link">Área do cliente</a></li>
-      <li><a href="#" class="main-nav__link">Fale conosco</a></li>
+      <li><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="main-nav__link">Área do cliente</a></li>
+      <li><a href="https://b24-dgbqx2.bitrix24.site/ouvidoria/" class="main-nav__link">Fale conosco</a></li>
     </ul>
     <ul class="outstanding-nav">
-      <li><a href="https://www.thaisimobiliaria.com.br/cadastre-seu-imovel" target="_blank" class="outstanding-nav__link outstanding-nav__link--dark">Anuncie seu imóvel</a></li>
+      <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" target="_blank" class="outstanding-nav__link outstanding-nav__link--dark">Anuncie seu imóvel</a></li>
     </ul>
     <div class="info">
       <div class="info__box">
