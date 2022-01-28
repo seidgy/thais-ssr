@@ -9,8 +9,8 @@
     "generate": "nuxt generate"
   },
   "engines" : { 
-    "npm" : ">=8.1.0",
-    "node" : ">=16.13.0"
+    "npm" : "8.1.2",
+    "node" : "16.13.1"
   },
   "dependencies": {
     "@netsells/nuxt-hotjar": "^0.1.3",
