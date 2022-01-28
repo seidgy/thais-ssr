@@ -399,7 +399,7 @@ export default {
     },
     handleVisita(){
       if(!this.enderecoQuinto){
-        document.querySelector('.b24-widget-button-crmform').click();
+        document.querySelector('.whatsapp').click();
       } else {
         window.location.href=this.enderecoQuinto;
       }
@@ -491,10 +491,6 @@ export default {
     }
   },
   mounted() {
-    (function(w,d,u){
-                var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-                var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-        })(window,document,'https://cdn.bitrix24.com.br/b14062569/crm/site_button/loader_2_uezk22.js');
   },
 
 }
@@ -576,9 +572,9 @@ export default {
   line-height: 1.3em;
   font-weight: 400;
   margin: 0;
-  line-clamp: 2;
+  line-clamp: 3;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   overflow: hidden;
   -webkit-box-orient: vertical;
   @include sm {
