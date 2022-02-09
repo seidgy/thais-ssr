@@ -82,7 +82,7 @@
 
         <div class="doubt-box">
           <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
-          <p class="doubt-box__text">Respeito pelo o que você procura</p>
+          <p class="doubt-box__text">Respeito pelo que você procura</p>
         </div>
 
         <div class="doubt-box">
@@ -102,7 +102,7 @@
             <slide :index="1">
               <div class="doubt-box">
                 <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
-                <p class="doubt-box__text">Respeito pelo o que você procura</p>
+                <p class="doubt-box__text">Respeito pelo que você procura</p>
               </div>
             </slide>
             <slide :index="2">

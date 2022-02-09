@@ -1,8 +1,10 @@
 <template>
   <section class="footer">
-    <ul class="main-nav">
+    <ul class="main-nav main-nav--footer">
       <li><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="main-nav__link">Área do cliente</a></li>
-      <li><a href="https://b24-dgbqx2.bitrix24.site/ouvidoria/" class="main-nav__link">Fale conosco</a></li>
+      <li><a href="https://b24-dgbqx2.bitrix24.site/Fale%20Conosco/" class="main-nav__link">Fale conosco</a></li>
+      <li><a href="https://b24-dgbqx2.bitrix24.site/ouvidoria/" class="main-nav__link">Ouvidoria</a></li>
+      <li><a href="https://thasimobiliaria.bitrix24.site/manutencao_interno/" class="main-nav__link">Manutenção</a></li>
     </ul>
     <ul class="outstanding-nav">
       <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" target="_blank" class="outstanding-nav__link outstanding-nav__link--dark">Anuncie seu imóvel</a></li>
@@ -64,7 +66,7 @@ export default {
   }
 
   .main-nav {
-    width: 40%;
+    width: 70%;
     @include md {
       width: auto;
     }
@@ -77,7 +79,7 @@ export default {
       margin-right: 40px;
     }
   .outstanding-nav{
-    width: 60%;
+    width: 30%;
     @include md {
       width: auto;
       margin-top: 15px;
