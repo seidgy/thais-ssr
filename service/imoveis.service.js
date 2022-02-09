@@ -39,7 +39,7 @@ export class ImoveiService {
   async getImoveisByIdImovel(token,codigo_imovel){
       return axios.get(process.env.VUE_APP_SERVER_URI+'/imoveis/getImoveisByIdImovel', {
           params: {
-              codigo_imovel: codigo_imovel
+              codigo_imovel: codigo_imovel.toUpperCase()
           },
           headers:{
               authorization: token

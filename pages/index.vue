@@ -160,6 +160,7 @@ export default {
   },
   data(){
     return {
+      codImovel: '',
       textoBusca: '',
       tipo: 'aluguel',
       finalidade: 'Residencial',
@@ -386,7 +387,7 @@ export default {
 
       if (this.showCode) {
         let input = document.querySelector('.search-bar__input').querySelector('input');
-        let value = input.value;
+        let value = input.value.toUpperCase().trim();
         params = {
           codigoImovel: value
         }
@@ -468,7 +469,7 @@ export default {
     this.listBairros.sort(function (a, b) {
       return a.localeCompare(b);
     });
-  }
+  },
 }
 </script>
 <style lang="scss" scoped>
