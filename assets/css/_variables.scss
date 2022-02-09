@@ -8,7 +8,7 @@ $color-yellow: #EDA602;
 $alt-yellow: #BFA901;
 $font-color-dark: #142038;
 $screen-sm: 768px;
-$screen-md: 1270px;
+$screen-md: 1285px;
 $screen-sp: 1100px;
 @mixin md{
     @media (max-width: #{$screen-md}){
