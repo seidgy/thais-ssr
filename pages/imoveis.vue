@@ -929,17 +929,63 @@ export default {
           'finalidade': [finalidadeImovel]
         }
       };
-      if(tipoImovel) params.tipo_imovel = tipoImovel;
-      if(bairroImovel && bairroImovel.length > 0) params.bairro = bairroImovel;
-      if(finalidadeImovel) params.finalidade = [finalidadeImovel];
-      if(enderecoImovel && enderecoImovel.length > 0) params.endereco = enderecoImovel;
-      if(minimoQuartos) params.minimoQuartos = parseInt(minimoQuartos,10);
-      if(minimoBanheiros) params.minimoBanheiros = parseInt(minimoBanheiros,10);
-      if(minimoVagas) params.minimoVagas = parseInt(minimoVagas,10);
-      if(minimoPreco && parseInt(minimoPreco,10) > 0) params.minimoPreco = parseInt(minimoPreco,10);
-      if(maximoPreco && parseInt(maximoPreco,10) > 0) params.maximoPreco = parseInt(maximoPreco,10);
-      if(minimoArea) params.minimoArea = parseInt(minimoArea,10);
-      if(maximoArea) params.maximoArea = parseInt(maximoArea,10);
+      let query = '?'
+      if(finalidadeImovel) {
+        params.finalidade = [finalidadeImovel];
+        query += 'finalidadeImovel='+finalidadeImovel;
+      }
+      query += '&tipo='+tipo;
+      if(tipoImovel && tipoImovel.length > 0) {
+        params.tipo_imovel = tipoImovel;
+        tipoImovel.forEach((item) => {
+          query += '&tipoImovel='+item;
+        })
+      }
+      if(bairroImovel && bairroImovel.length > 0){
+        params.bairro = bairroImovel;
+        bairroImovel.forEach((item) => {
+          query += '&bairroImovel='+item;
+        })
+      }
+      if(enderecoImovel && enderecoImovel.length > 0) {
+        params.endereco = enderecoImovel;
+        enderecoImovel.forEach((item) => {
+          query += '&enderecoImovel='+item;
+        })
+      }
+      if(minimoQuartos) {
+        params.minimoQuartos = parseInt(minimoQuartos,10);
+        query += '&minimoQuartos='+minimoQuartos;
+      }
+      if(minimoBanheiros) {
+        params.minimoBanheiros = parseInt(minimoBanheiros,10);
+        query += '&minimoBanheiros='+minimoBanheiros;
+      }
+      if(minimoVagas) {
+        params.minimoVagas = parseInt(minimoVagas,10);
+        query += '&minimoVagas='+minimoVagas;
+      }
+      if(minimoPreco && parseInt(minimoPreco,10) > 0) {
+        params.minimoPreco = parseInt(minimoPreco,10);
+        query += '&minimoPreco='+minimoPreco;
+      }
+      if(maximoPreco && parseInt(maximoPreco,10) > 0) {
+        params.maximoPreco = parseInt(maximoPreco,10);
+        query += '&maximoPreco='+maximoPreco;
+      }
+      if(minimoArea) {
+        params.minimoArea = parseInt(minimoArea,10);
+        query += '&minimoArea='+minimoArea;
+      }
+      if(maximoArea) {
+        params.maximoArea = parseInt(maximoArea,10);
+        query += '&maximoArea='+maximoArea;
+      }
+      history.pushState(
+        {},
+        null,
+        this.$route.path + query
+      )
       return params;
     },
     newTabSearch(type, newValue) {
