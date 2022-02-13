@@ -64,6 +64,18 @@
             <div style="display: flex;min-height:400px;margin-top:20px">
               <div style="margin-right: 10px; width:255px">
                 <input type="hidden" name="finalidadeImovel" v-model="finalidadeImovel">
+                <div class="search-form__options">
+                  <div class="search-form__option" >
+                    <input type="radio" id="alugar" name="tipo" v-model="tipo" checked value="aluguel" class="search-form__radio">
+                    <label for="alugar" class="search-form__custom-radio" tabindex="0"></label>
+                    <label for="alugar" class="search-form__label">Alugar</label>
+                  </div>
+                  <div class="search-form__option">
+                    <input type="radio" id="comprar" name="tipo" v-model="tipo" value="compra" class="search-form__radio">
+                    <label for="comprar" class="search-form__custom-radio" tabindex="0"></label>
+                    <label for="comprar" class="search-form__label">Comprar</label>
+                  </div>
+                </div>
                 <div class="filtro-imoveis__group">
                   <button class="filtro-imoveis__title" :class="{'filtro-imoveis__title--open':showtipo}" @click.prevent="showtipo=!showtipo">
                     <span>Tipo de imóvel</span>
