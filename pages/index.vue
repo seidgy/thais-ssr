@@ -9,16 +9,21 @@
         <div class="search-form__title-container">
           <h1 class="search-form__title" id="search-title-aluguel">Aluguel simples, com quem tem experiência</h1>
           <h1 class="search-form__title search-form__title--hidden" id="search-title-compra">Compre com segurança e comodidade</h1>
+          <h1 class="search-form__title search-form__title--hidden" id="search-title-codigo">Encontre seu imóvel pelo código</h1>
         </div>
-        <form class="search-form__form" v-if="!showCode">
+        <form class="search-form__form">
           <div class="search-form__options">
-          <div class="search-form__option" >
+            <div class="search-form__option" >
               <input type="radio" id="alugar" name="tipo" v-model="tipo" checked value="aluguel" class="search-form__radio" @change="changeTitle('aluguel')">
               <label for="alugar" class="search-form__label">Alugar</label>
             </div>
-          <div class="search-form__option">
+            <div class="search-form__option">
               <input type="radio" id="comprar" name="tipo" v-model="tipo" value="compra" class="search-form__radio" @change="changeTitle('compra')">
               <label for="comprar" class="search-form__label">Comprar</label>
+            </div>
+            <div class="search-form__option">
+              <input type="radio" id="codigo" name="tipo" v-model="tipo" value="codigo" class="search-form__radio" @change="changeTitle('codigo')">
+              <label for="codigo" class="search-form__label">Encontre pelo código</label>
             </div>
           </div>
           <div class="search-bar">
@@ -30,8 +35,16 @@
             <div class="search-bar__separator"></div>
             <autocomplete
                 :search="search"
+                v-if="!showCode"
                 placeholder="Digite a região onde quer morar"
                 aria-label="Digite a região onde quer morar"
+                class="search-bar__input"
+              ></autocomplete>
+              <autocomplete
+                v-if="showCode"
+                :search="search"
+                placeholder="Digite o código do imóvel"
+                aria-label="Digite o código do imóvel"
                 class="search-bar__input"
               ></autocomplete>
             <button v-on:click.prevent="getImoveis" class="button button--primary">
@@ -39,7 +52,7 @@
             </button>
           </div>
         </form>
-        <form class="search-form__form" v-if="showCode">
+        <form class="search-form__form" v-if="1 === 2">
           <div class="search-bar">
             <input type="hidden" v-model="finalidade">
             <autocomplete
@@ -54,8 +67,8 @@
             </button>
           </div>
         </form>
-        <a href="javascript:void(0)" style="margin-top: 10px;display: block" class="a-change-input" v-on:click="showInputCode()" v-if="!showCode">Encontre pelo código</a>
-        <a href="javascript:void(0)" style="margin-top: 10px;display: block" class="a-change-input" v-on:click="showInputCode()" v-if="showCode">Voltar aos filtros</a>
+        <!--a href="javascript:void(0)" style="margin-top: 10px;display: block" class="a-change-input" v-on:click="showInputCode()" v-if="!showCode">Encontre pelo código</a>
+        <a href="javascript:void(0)" style="margin-top: 10px;display: block" class="a-change-input" v-on:click="showInputCode()" v-if="showCode">Voltar aos filtros</a -->
       </div>
     </div>
     <button type="button" class="cta-business" @click="downToBusiness()">
@@ -101,7 +114,7 @@
 
         <div class="doubt-box">
           <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
-          <p class="doubt-box__text">Respeito pelo que você procura</p>
+          <p class="doubt-box__text">Respeito pelo o que você procura</p>
         </div>
 
         <div class="doubt-box">
@@ -121,7 +134,7 @@
           <slide :index="1">
             <div class="doubt-box">
               <img src="/images/respeito.svg" alt="Ícone respeito" class="doubt-box__icon">
-              <p class="doubt-box__text">Respeito pelo que você procura</p>
+              <p class="doubt-box__text">Respeito pelo o que você procura</p>
             </div>
           </slide>
           <slide :index="2">
@@ -160,7 +173,6 @@ export default {
   },
   data(){
     return {
-      codImovel: '',
       textoBusca: '',
       tipo: 'aluguel',
       finalidade: 'Residencial',
@@ -387,7 +399,7 @@ export default {
 
       if (this.showCode) {
         let input = document.querySelector('.search-bar__input').querySelector('input');
-        let value = input.value.toUpperCase().trim();
+        let value = input.value;
         params = {
           codigoImovel: value
         }
@@ -411,17 +423,39 @@ export default {
     changeTitle(type){
       var id1;
       var id2;
+      var id3;
       if(type === 'aluguel' && document.getElementById('alugar').checked) {
-        id1 = 'search-title-compra';
-        id2 = 'search-title-aluguel';
+        // id1 = 'search-title-compra';
+        // id2 = 'search-title-aluguel';
+        this.showCode = false;
+        document.getElementById('search-title-compra').classList.add("search-form__title--hidden")
+        document.getElementById('search-title-codigo').classList.add("search-form__title--hidden")
+        setTimeout(function(){
+          document.getElementById('search-title-aluguel').classList.remove("search-form__title--hidden");
+        },500);
       } else if(type === 'compra' && document.getElementById('comprar').checked) {
-        id1 = 'search-title-aluguel';
-        id2 = 'search-title-compra';
+        // id1 = 'search-title-aluguel';
+        // id2 = 'search-title-compra';
+        document.getElementById('search-title-aluguel').classList.add("search-form__title--hidden")
+        document.getElementById('search-title-codigo').classList.add("search-form__title--hidden")
+        setTimeout(function(){
+          document.getElementById('search-title-compra').classList.remove("search-form__title--hidden");
+        },500);
+        this.showCode = false;
+      } else if(type === 'codigo' && document.getElementById('codigo').checked) {
+        // id1 = 'search-title-aluguel';
+        // id2 = 'search-title-compra';
+        document.getElementById('search-title-compra').classList.add("search-form__title--hidden")
+        document.getElementById('search-title-aluguel').classList.add("search-form__title--hidden")
+        setTimeout(function(){
+          document.getElementById('search-title-codigo').classList.remove("search-form__title--hidden");
+        },500);
+        this.showCode = true;
       }
-      document.getElementById(id1).classList.add("search-form__title--hidden");
-      setTimeout(function(){
-        document.getElementById(id2).classList.remove("search-form__title--hidden");
-      },500);
+      // document.getElementById(id1).classList.add("search-form__title--hidden");
+      // setTimeout(function(){
+      //   document.getElementById(id2).classList.remove("search-form__title--hidden");
+      // },500);
     },
     downToBusiness(){
       document.getElementById("business").scrollIntoView({
@@ -469,7 +503,7 @@ export default {
     this.listBairros.sort(function (a, b) {
       return a.localeCompare(b);
     });
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>
