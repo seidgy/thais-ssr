@@ -487,7 +487,7 @@ export default {
       }
     },
     share() {
-        utils.shareButton(this.dadosImovel.codigo_imovel, this.dadosImovel.imovel.titulo_imovel, document.location.origin+'/imovel?codImovel='+this.dadosImovel.codigo_imovel+'&title='+this.dadosImovel.imovel.titulo_imovel);
+        utils.shareButton(this.dadosImovel.codigo_imovel, this.dadosImovel.imovel.titulo_imovel, document.location.origin+'/imovel/'+this.dadosImovel.codigo_imovel);
     }
   },
   mounted() {

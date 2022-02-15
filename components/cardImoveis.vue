@@ -141,7 +141,7 @@ export default {
             this.$router.push('/compare');
         },
         share() {
-            utils.shareButton(this.imovel.codigo_imovel, this.imovel.imovel.titulo_imovel, document.location.origin+'/imovel?codImovel='+this.imovel.codigo_imovel+'&title='+this.imovel.imovel.titulo_imovel);
+            utils.shareButton(this.imovel.codigo_imovel, this.imovel.imovel.titulo_imovel, document.location.origin+'/imovel/'+this.imovel.codigo_imovel);
         }
     },
     mounted() {
