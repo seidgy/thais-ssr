@@ -3,7 +3,7 @@
         <Header />
         <Nuxt />
         <Footer logo="false" />
-        <modal tabindex="-1" adaptive="true" role="dialog" id="modal-cookies" name="modal-cookies" :clickToClose="false" :shiftX="0.1" :shiftY="0.9" :height="240" :width="300">
+        <modal tabindex="-1" adaptive="true" role="dialog" id="modal-cookies" name="modal-cookies" :clickToClose="false" :shiftX="0.1" :shiftY="0.9" :height="300" :width="240">
           <div class="modal-content">
             <div class="modal-body">
             <p class="default-text">Este site usa cookies para encontrar os melhores imóveis para você. Ao prosseguir, você concorda com nossas <nuxt-link :to="'/politica-de-cookies'" class="default-link">Políticas de Cookies e Privacidade</nuxt-link></p>
