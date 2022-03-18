@@ -1,7 +1,7 @@
 <template>
   <div class="main row d-flex justify-content-center">
     <h1 class="sr-only">Encontre seu imóvel</h1>
-    <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556130312200&amp;text=Gostaria de receber mais informações sobre Imóveis '+(tipo=='aluguel'?'para alugar':'`à venda')" class="whatsapp">
+    <a target="_blank" title="Tirar dúvidas por Whatsapp" :href="'https://api.whatsapp.com/send?phone=556130312200&amp;text=Gostaria de receber mais informações sobre Imóveis '+(tipo=='aluguel'?'para locação':'`à venda')" class="whatsapp">
       <img src="/images/whatsapp.png" alt="Tirar dúvidas por Whatsapp" class="whatsapp__icon" />
       <span class="sr-only">Abre em uma nova aba</span>
     </a>
