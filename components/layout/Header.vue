@@ -2,7 +2,7 @@
   <section class="head-nav">
     <nav id="desk-nav" v-if="this.$parent.windowWidth > 1270" class="top-nav">
       <ul class="outstanding-nav">
-        <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" target="_blank" class="outstanding-nav__link">Anuncie seu imóvel</a></li>
+        <li><a href="https://athaiscuida.thaisimobiliaria.com.br/" target="_blank" class="outstanding-nav__link">Anuncie seu imóvel</a></li>
       </ul>
       <ul class="main-nav">
         <li class="main-nav__li"><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="main-nav__link">Área do cliente</a></li>
@@ -25,7 +25,7 @@
       </a>
       <nav class="mobile-nav__container">
         <ul class="mobile-nav__menu">
-          <li><a href="https://www.athaiscuida.thaisimobiliaria.com.br/" class="mobile-nav__link mobile-nav__link--outstanding" target="_blank">Anuncie seu imóvel</a></li>
+          <li><a href="https://athaiscuida.thaisimobiliaria.com.br/" class="mobile-nav__link mobile-nav__link--outstanding" target="_blank">Anuncie seu imóvel</a></li>
           <li><a href="https://clienteonline.thaisimobiliaria.com.br/skw/login/?next=/" class="mobile-nav__link">Área do cliente</a></li>
           <li><a href="https://b24-dgbqx2.bitrix24.site/Fale%20Conosco/" class="mobile-nav__link">Fale conosco</a></li>
         </ul>
