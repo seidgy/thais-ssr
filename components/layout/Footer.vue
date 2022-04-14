@@ -24,7 +24,7 @@
     <div class="info info--big">
       <div class="info__box">
         <div class="info__title">Guará - Matriz</div>
-        <div class="info__text">QE 7 Bloco C, 0 - salas 102 a 108 e 116 - Guará - Guará/DF - Central de Atendimento (61) 3031-2200</div>
+        <div class="info__text">QE 7 Ed. Guará One - Guará/DF - Central de Atendimento (61) 3031-2200</div>
       </div>
       <div class="info__box">
         <div class="info__title">Asa Sul</div>

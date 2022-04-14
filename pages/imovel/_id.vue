@@ -256,8 +256,14 @@ export default {
     loading, cardImoveis
   },
   async asyncData({ $content, params }) {
-    const imovelData = await $content('imoveis', params.id).fetch()
-    return { imovelData }
+    try {
+      const imovelData = await $content('imoveis', params.id).fetch()
+      return { imovelData }
+    } catch(e) {
+      const imovelData = {codigo_imovel: params.id}
+      return { imovelData }
+    }
+    
   },
   computed: {
       ...mapState(['favoritos','compare']),
@@ -268,15 +274,19 @@ export default {
             return (this.compare.find(com => com == this.imovelData.codigo_imovel)) ? true:false
       },
       meta() {
-      const metaData = {
-        type: "website",
-        url: "https://thaisimobiliaria.com.br/imovel/"+this.imovelData.codigo_imovel,
-        title: this.imovelData.titulo,
-        description: "Veja este imóvel que encontrei na Thaís",
-        picture: this.imovelData.foto,
-        site_name: "Thaís Imobiliária"
-      };
-      return getSiteMeta(metaData);
+        if (this.imovelData.titulo){
+          const metaData = {
+            type: "website",
+            url: "https://thaisimobiliaria.com.br/imovel/"+this.imovelData.codigo_imovel,
+            title: this.imovelData.titulo,
+            description: "Veja este imóvel que encontrei na Thaís",
+            picture: this.imovelData.foto,
+            site_name: "Thaís Imobiliária"
+          };
+          return getSiteMeta(metaData);
+        } else {
+          return getSiteMeta({});
+        }
     }
   },
   head() {
@@ -291,7 +301,7 @@ export default {
     $route: {
       immediate: true,  
       handler(to) {       
-        this.getImovel(this.imovelData.codigo_imovel)
+        this.getImovel(this.imovelData.codigo_imovel?this.imovelData.codigo_imovel:this.params.id)
         this.isCompare = this.imovelNaListaCompare
         this.imovTitle = to.query.title
       }
