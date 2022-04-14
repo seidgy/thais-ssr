@@ -49,7 +49,7 @@
         <div class="compare__linha compare__buttons">
           <div class="compare__coluna compare__coluna--shrink">&nbsp;</div>
           <div class="compare__coluna" v-for="(imv, index) in comparativoPorCampos.cabecalho" :key="index">
-            <nuxt-link :to="'/imovel/'+imv.codigo_imovel" class="button button--primary">Detalhes</nuxt-link>
+            <nuxt-link :to="'/imovel/detalhes/'+imv.codigo_imovel" class="button button--primary">Detalhes</nuxt-link>
           </div>
           <div class="compare__colun ">&nbsp;</div>
         </div>

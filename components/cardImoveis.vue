@@ -3,7 +3,7 @@
   <div class="imovel__carrossel">      
         <div class="carousel">
             <client-only>   
-                <nuxt-link :to="'/imovel/'+imovel.codigo_imovel" class="carousel__link"><span class="sr-only">Acessar imóvel</span></nuxt-link>
+                <nuxt-link :to="'/imovel/detalhes/'+imovel.codigo_imovel" class="carousel__link"><span class="sr-only">Acessar imóvel</span></nuxt-link>
                 <splide :options="splideOptions" ref="slider">
                 <splide-slide v-for="foto in imovel.fotos" v-bind:key="foto._id" >
                     <img :src="foto.url_arquivo" :alt="foto.foto_titulo" />
@@ -26,7 +26,7 @@
     </div>
     <div class="imovel__data">
         <h3 class="imovel__title">
-            <nuxt-link :to="'/imovel/'+imovel.codigo_imovel" class="link-imovel"><b>{{imovel.imovel.endereco}}</b>, {{imovel.imovel.titulo_imovel}}</nuxt-link>
+            <nuxt-link :to="'/imovel/detalhes/'+imovel.codigo_imovel" class="link-imovel"><b>{{imovel.imovel.endereco}}</b>, {{imovel.imovel.titulo_imovel}}</nuxt-link>
         </h3>
         <div class="imovel__bottom-content">
             <div class="numbers">
@@ -53,7 +53,7 @@
             </div>
             <div class="imovel__buttons">
                 <a href="#" @click.prevent="setCompare()" class="button button--secondary" :class="{'button--check':isCompare}">Compare</a>
-                <nuxt-link :to="'/imovel/'+imovel.codigo_imovel" class="button button--primary">DETALHES</nuxt-link>
+                <nuxt-link :to="'/imovel/detalhes/'+imovel.codigo_imovel" class="button button--primary">DETALHES</nuxt-link>
             </div>
             <div class="imovel__buttons">
                 <a href="" @click.prevent="share"><span class="imovel__share" :id="'share-'+imovel.codigo_imovel">Compartilhe</span></a>
@@ -141,7 +141,7 @@ export default {
             this.$router.push('/compare');
         },
         share() {
-            utils.shareButton(this.imovel.codigo_imovel, this.imovel.imovel.titulo_imovel, document.location.origin+'/imovel/'+this.imovel.codigo_imovel);
+            utils.shareButton(this.imovel.codigo_imovel, this.imovel.imovel.titulo_imovel, document.location.origin+'/imovel/detalhes/'+this.imovel.codigo_imovel);
         }
     },
     mounted() {
