@@ -697,10 +697,8 @@ export default {
           termoBusca: this.paramsPagina.termoBusca
         };
 
-        console.log('1111111', this.codigoImovel)
-
         if (this.codigoImovel) {
-          paramsConsulta.codigo_imovel = this.codigoImovel
+          paramsConsulta.codigo_imovel = this.codigoImovel.toUpperCase()
         }
 
         this.carregando = true
@@ -1016,18 +1014,10 @@ export default {
     }
   },
   async mounted() {
-    /*try {
-      await this.$recaptcha.init()
-    } catch (e) {
-      console.error(e);
-    }*/
     if(window.innerWidth < 1270) {
       this.tipoVisualizacao = 'tabela';
     }
   },
-  /*beforeDestroy() {
-    this.$recaptcha.destroy()
-  }*/
 }
 </script>
 <style lang="scss" scoped>

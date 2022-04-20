@@ -28,7 +28,7 @@
       </div>
       <div class="info__box">
         <div class="info__title">Asa Sul</div>
-        <div class="info__text">Quadra SGAS 902, 0 - Conjunto B, Salas 23, 24, 25 - Edifício Atenas - Brasília/DF</div>
+        <div class="info__text">Quadra SGAS 902, 0 - Conjunto B, Salas 23, 24, 25 - Edifício Athenas - Brasília/DF</div>
       </div>
       <div class="info__box">
         <div class="info__title">Águas Claras</div>
