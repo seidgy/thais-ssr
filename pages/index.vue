@@ -15,14 +15,17 @@
           <div class="search-form__options">
             <div class="search-form__option" >
               <input type="radio" id="alugar" name="tipo" v-model="tipo" checked value="aluguel" class="search-form__radio" @change="changeTitle('aluguel')">
+              <label for="alugar" tabindex="0" class="search-form__custom-radio search-form__custom-radio--checkbox"></label>
               <label for="alugar" class="search-form__label">Alugar</label>
             </div>
             <div class="search-form__option">
               <input type="radio" id="comprar" name="tipo" v-model="tipo" value="compra" class="search-form__radio" @change="changeTitle('compra')">
+              <label for="comprar" tabindex="0" class="search-form__custom-radio search-form__custom-radio--checkbox"></label>
               <label for="comprar" class="search-form__label">Comprar</label>
             </div>
             <div class="search-form__option">
               <input type="radio" id="codigo" name="tipo" v-model="tipo" value="codigo" class="search-form__radio" @change="changeTitle('codigo')">
+              <label for="codigo" tabindex="0" class="search-form__custom-radio search-form__custom-radio--checkbox"></label>
               <label for="codigo" class="search-form__label">Encontre pelo código</label>
             </div>
           </div>
@@ -123,7 +126,7 @@
         </div>
       </div>
       <div v-else class="mobile-about">
-        <img src="/images/logo-thais.svg" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
+        <img src="~assets/images/logo_rede.png" alt="Thaís Imobiliária" class="doubt-box__icon doubt-box__icon--big">
         <carousel-3d :width="200" :height="200" :autoplay="true" :autoplayTimeout="5000">
           <slide :index="0">
             <div class="doubt-box">
@@ -620,6 +623,7 @@ export default {
     .search-form__title--hidden {
       opacity: 0;
       transform: translateY(-5%);
+      z-index: -1;
     }
 
     .search-form__subtitle {
@@ -642,6 +646,15 @@ export default {
       margin-top: 20px;
       opacity: 0;
       transition: opacity 0.5s ease-out 0.9s;
+      @include sm {
+        background: #FFF;
+        flex-direction: column;
+        width: 90%;
+        padding: 10px 10px;
+        border-radius: 22px 22px 0 0;
+        margin: 0 auto;
+        align-items: flex-start;
+      }
     }
 
     .search-form__option {
@@ -649,6 +662,10 @@ export default {
       flex-flow: row nowrap;
       align-items: center;
       margin: 0 15px;
+      @include sm {
+        text-align: left;
+        margin: 5px 0;
+      }
     }
 
     .search-form__radio {
@@ -656,26 +673,10 @@ export default {
     }
 
     .search-form__custom-radio {
-      width: 24px;
-      height: 24px;
-      border-radius: 12px;
-      border: 2px solid #{$font-color};
-      margin-right: 10px;
-      position: relative;
-    }
-
-    .search-form__custom-radio::after {
-      content: '';
-      display: block;
-      position: absolute;
-      border-radius: 6px;
-      background-color: #{$font-color};
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.1s ease-out;
-      height: 0;
-      width: 0;
+      margin-right: 16px;
+      @include min-md {
+        display: none;
+      }
     }
 
     .search-form__label {
@@ -687,6 +688,9 @@ export default {
       padding: 4px 18px;
       margin: 0;
       border-radius: 8px 8px 0 0;
+      @include sm {
+        padding: 4px 0;
+      }
     }
 
     .search-form__radio:checked ~ .search-form__label {
@@ -717,6 +721,7 @@ export default {
       flex-flow: column nowrap;
       height: auto;
       padding: 10px 10px;
+      border-radius: 0 0 22px 22px;
     }
     .button  {
       @include sm {
@@ -743,7 +748,7 @@ export default {
       border: none;
       @include sm {
         width: 100%;
-        border-radius:  17px 17px 0 0;
+        border-radius: 0;
         margin-bottom: 20px;
       }
     }

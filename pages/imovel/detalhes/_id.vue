@@ -113,7 +113,7 @@
               </div>
             </div>
           </div>
-          <div class="row row--dados">
+          <div class="row row--dados" :class="{'row--spaced':dadosImovel.ofertas[0].tipo_oferta==2}">
             <div class="col-md-8"><div class="separator"></div></div>
           </div>
           <div class="row">
@@ -561,7 +561,7 @@ export default {
       height: 200px;
       left: 0;
       right: 0;
-      background: #404040;
+      background: #FFF;
       position: absolute;
     }
   }
@@ -600,21 +600,22 @@ export default {
     font-weight: 800;
   }
 
+  .numbers__text {
+    color: #142038;
+  }
+
   .row--dados {
     @include sm {
       padding-top: 570px;
+      &.row--spaced {
+        padding-top: 750px;
+      }
     }
   }
 
   .ticket {
     @include sm {
       top: 170px;
-    }
-  }
-
-  .numbers__number {
-    @include sm { 
-      color: #FFF;
     }
   }
 

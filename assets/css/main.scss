@@ -1620,3 +1620,47 @@ div.grecaptcha-badge {
         opacity: 0;
     }
 }
+
+
+
+.search-form__custom-radio {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 2px solid #{$font-color};
+    margin-right: 5px;
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  .search-form__custom-radio--checkbox {
+    border-radius: 2px; 
+  }
+
+  .search-form__custom-radio::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 6px;
+    background-color: #{$font-color};
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    height: 0;
+    width: 0;
+  }
+
+  .search-form__custom-radio--checkbox::after {
+    border-radius: 2px;
+  }
+
+  .search-form__radio:checked ~ .search-form__custom-radio::after {
+    width: 8px;
+    height: 8px;
+  }
+
+  .search-form__radio:checked ~ .search-form__custom-radio--checkbox::after {
+    width: 9px;
+    height: 9px;
+  }
