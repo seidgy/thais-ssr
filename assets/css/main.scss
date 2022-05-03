@@ -1421,6 +1421,8 @@ div.row {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    /*FIX IMAGENS COM ZOOM*/
+    background-size: contain!important;
 }
 
 .splide__list,

@@ -23,15 +23,15 @@
     </div>
     <div class="info info--big">
       <div class="info__box">
-        <div class="info__title">Guará - Matriz</div>
+        <div class="info__title"><a href="https://goo.gl/maps/iRQAn4gnCDqCaR9i8" target="_blank" class="info__link">Guará - Matriz <map-icon /></a></div>
         <div class="info__text">QE 7 Ed. Guará One - Guará/DF - Central de Atendimento (61) 3031-2200</div>
       </div>
       <div class="info__box">
-        <div class="info__title">Asa Sul</div>
+        <div class="info__title"><a href="https://goo.gl/maps/DrbBCTJz9Ej9qbGx7" target="_blank" class="info__link">Asa Sul<map-icon /></a></div>
         <div class="info__text">Quadra SGAS 902, 0 - Conjunto B, Salas 23, 24, 25 - Edifício Athenas - Brasília/DF</div>
       </div>
       <div class="info__box">
-        <div class="info__title">Águas Claras</div>
+        <div class="info__title"><a href="https://goo.gl/maps/5ieo2VxyUNQCcAfC9" target="_blank" class="info__link">Águas Claras<map-icon /></a></div>
         <div class="info__text">Rua 9, 0 - Lote 09 Sul, Loja 02 - Próximo Estação Arniqueiras - Águas Claras/DF</div>
       </div>
     </div>
@@ -39,8 +39,13 @@
 </template>
 
 <script>
+import mapIcon from '@/components/common/mapIcon.vue'
+
 export default {
   name: 'Footer',
+  components: {
+    mapIcon,
+  },
   props: ['logo']
 }
 </script>
@@ -119,6 +124,16 @@ export default {
 
     .info__title {
       font-weight: 800;
+    }
+
+    .info__link {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      margin-bottom: 10px;
+      svg {
+        margin-left: 10px;
+      }
     }
 
     .info__text{
