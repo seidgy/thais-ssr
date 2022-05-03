@@ -1421,7 +1421,12 @@ div.row {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    /*FIX IMAGENS COM ZOOM*/
+}
+
+
+/*FIX IMAGENS COM ZOOM*/
+.big-slider .splide__slide,
+.modal-galeria .splide__slide {
     background-size: contain!important;
 }
 

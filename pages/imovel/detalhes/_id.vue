@@ -226,7 +226,7 @@
             </div>
         </div>
     </modal>
-    <modal tabindex="-1" role="dialog" name="modal-galeria" :adaptive="true" width="80%" height="80%">
+    <modal tabindex="-1" role="dialog" name="modal-galeria" class="modal-galeria" :adaptive="true" width="80%" height="80%">
       <client-only>
         <div class="close-me">
           <a href="#" @click.prevent="$modal.hide('modal-galeria')">
@@ -695,6 +695,10 @@ export default {
       left: 30px;
       transform: translateY(-50%);
     }
+
+.modal-galeria .splide {
+  background-color: #404040;
+}
 
 .close-me {
   width: 100%;
