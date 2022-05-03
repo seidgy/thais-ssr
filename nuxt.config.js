@@ -64,7 +64,8 @@ export default {
     }],
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    '@nuxtjs/content'
+    '@nuxtjs/content',
+    '@nuxtjs/gtm',
   ],
 
   content: {
@@ -87,5 +88,8 @@ export default {
   },
   googleAnalytics: {
     id: 'UA-24261471-1'
+  },
+  gtm: {
+    id: 'GTM-WMDZM79'
   }
 }
