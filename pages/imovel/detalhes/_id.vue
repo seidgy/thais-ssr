@@ -49,7 +49,7 @@
                       </div>
                       <div class="info-box__row">
                         <span class="info-box__label">IPTU</span>
-                        <span class="info-box__value">{{oferta.preco_iptu? 'R$'+oferta.preco_iptu.toLocaleString('pt-BR')+'/mês':''}}</span>
+                        <span class="info-box__value">{{oferta.preco_iptu? 'R$'+oferta.preco_iptu.toLocaleString('pt-BR')/*+'/mês'*/:''}}</span>
                       </div>
                       <div class="info-box__row info-box__row--last" v-if="oferta.tipo_oferta==2">
                         <span class="info-box__label">Preço médio m²</span>
